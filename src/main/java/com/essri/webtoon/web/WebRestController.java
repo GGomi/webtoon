@@ -1,32 +1,34 @@
 package com.essri.webtoon.web;
 
+import com.essri.webtoon.service.Crawling;
 import com.essri.webtoon.service.ToonService;
 import com.essri.webtoon.web.data.ToonInfo;
+import com.essri.webtoon.web.data.Toons;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 @Slf4j
 public class WebRestController {
-    @Autowired
-    ToonService toonService;
+
+    private Crawling crawling;
+    private ToonService toonservice;
 
     @GetMapping("/test")
     public String test() {
-        return "Its test!!!";
+        return "It's test!!!";
     }
 
     @GetMapping("/getList")
     public void getList() {
-        try {
-            List<ToonInfo> asd = toonService.getToonData();
-        } catch (Exception e){
-            log.debug(e.getMessage());
-        }
+        List<Toons> list = crawling.getNaverToonData();
+
+        toonservice.saveData(list);
 
     }
 }

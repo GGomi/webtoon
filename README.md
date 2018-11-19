@@ -2,9 +2,6 @@
 ![spring Boot Version](https://img.shields.io/badge/SpringBoot-2.1.0%20RELEASE-green.svg)
 ![jdk version](https://img.shields.io/badge/jdk-8-red.svg)
 
-# 목차
-[TOC]
-
 ---
 # 프로젝트 소개
 Spring Boot 2.1 기반의 토이 프로젝트입니다. 많은 웹툰 플랫폼들이 있는데 이런 플랫폼들을 한눈에 볼 수 있게끔 만들 계획입니다.
