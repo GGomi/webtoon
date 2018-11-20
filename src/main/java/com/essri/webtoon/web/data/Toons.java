@@ -14,8 +14,8 @@ import javax.persistence.*;
 public class Toons {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @Column(length = 100, nullable = false)
+    private String toon_code;
 
     @Column(length = 100, nullable = false)
     private String toon_name;
@@ -26,6 +26,7 @@ public class Toons {
     @Column(length = 100, nullable = false)
     private String toon_provider;
 
+
     @Column(length = 300, nullable = false)
     private String toon_href;
 
@@ -33,6 +34,7 @@ public class Toons {
     private String toon_imgsrc;
 
     /**
+     * @param toon_code
      * @param toon_name
      * @param serialize_day
      * @param toon_provider
@@ -41,7 +43,8 @@ public class Toons {
      */
 
     @Builder
-    public Toons(String toon_name, String serialize_day, String toon_provider, String toon_href, String toon_imgsrc) {
+    public Toons(String toon_code, String toon_name, String serialize_day, String toon_provider, String toon_href, String toon_imgsrc) {
+        this.toon_code      = toon_code;
         this.toon_name      = toon_name;
         this.serialize_day  = serialize_day;
         this.toon_provider  = toon_provider;

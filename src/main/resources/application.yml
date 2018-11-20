@@ -7,14 +7,19 @@ spring:
   profiles: local
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/webtoon
+    url: jdbc:mysql://localhost:3306/webtoon?useUnicode=yes&characterEncoding=UTF-8
     username: root
     password: root
   jpa:
     hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
+
 ---
 spring:
-  profiles: products
+  profiles: test
+  h2:
+    console:
+      enabled: true
+
 
