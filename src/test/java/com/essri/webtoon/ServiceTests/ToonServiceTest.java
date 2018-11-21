@@ -60,7 +60,7 @@ public class ToonServiceTest {
     public void 네이버_웹툰_크롤링_테스트() {
         // json 출력을 위한 임시코드
         // given
-        List<Toons> list = toonService.insertData();
+        List<Toons> list = toonService.crawlData();
 
         // when
 

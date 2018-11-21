@@ -25,7 +25,7 @@ public class ToonService {
 
     private final ToonRepository toonRepository;
 
-    public List<Toons> insertData() {
+    public List<Toons> crawlData() {
         // Exception 필요
         // 추후 따로 전역으로 따로 빼서 쓰는게 좋을 듯
         String          provider    = "NAVER";
@@ -71,21 +71,30 @@ public class ToonService {
                             .toon_href(href)
                             .toon_imgsrc(src)
                             .build());
+
                 }
             }
         } catch (IOException e) {
             log.debug(e.getMessage());
         }
-//        return info;
+        log.info(":::::::::::::::::::::::::ToonService.crawlData():::::::::::::::::::::::::>>>>>> SUCCESS!!!");
         return toonRepository.saveAll(info);
     }
 
     public List<ToonsDTO.ListRes> getList() {
         List<Toons> lists = toonRepository.findAll();
         List<ToonsDTO.ListRes> nList = new ArrayList<>();
+
         for(Toons t : lists) {
             nList.add(new ToonsDTO.ListRes(t));
         }
+
+        if(!nList.isEmpty()) {
+            log.info(":::::::::::::::::::::::::ToonService.getList():::::::::::::::::::::::::>>>>>> SUCCESS!!!");
+        } else {
+            log.error(":::::::::::::::::::::::::ToonService.getList():::::::::::::::::::::::::>>>>>> ERROR!!!");
+        }
+
         return nList;
     }
 }
