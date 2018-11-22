@@ -13,22 +13,33 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
 @AllArgsConstructor
-//@Transactional
 @Slf4j
 public class ToonService {
 
     private final ToonRepository toonRepository;
+    private final String[] dayList = {"MON","TUE","WED","THU","FRI","SAT","SUN"};
 
     public List<Toons> crawlData() {
+        HashMap<String, Byte> map = new HashMap<>();
+        byte pow = 1;
+
+        for(String a : dayList) {
+            map.put(a,pow);
+            pow *= 2;
+        }
+
         // Exception 필요
+
         // 추후 따로 전역으로 따로 빼서 쓰는게 좋을 듯
-        String          provider    = "NAVER";
+        boolean      flag        = true;
+        String       provider    = "NAVER";
         // 크롤링한 데이터를 담을 List
         List<Toons>  info        = new ArrayList<>();
 
@@ -38,7 +49,7 @@ public class ToonService {
             Elements contents        = doc.select(".col_inner h4");
 
             for(Element e:contents) {
-                String      dayInfo         = e.className();
+                String      dayInfo         = e.className().toUpperCase();
                 Elements    a               = e.nextElementSibling().select(".thumb");
 
                 for(Element i:a) {
@@ -50,28 +61,48 @@ public class ToonService {
                      * src          =>      웹툰 썸네일 이미지 링크
                      * name         =>      웹툰 이름
                      */
+
                     Element       aTag            = i.selectFirst("a");
                     Element       img             = aTag.selectFirst("img");
                     String        href            = aTag.attr("href");
                     String        src             = img.attr("src");
                     String        name            = img.attr("title");
-                    String        code            = String.valueOf(dayInfo.substring(0,2)).toUpperCase();
+                    String        code            = "";
+                    byte          serial          = map.get(dayInfo);
                     Pattern       p               = Pattern.compile("(\\d+\\d)");
                     Matcher       m               = p.matcher(href);
 
+                    // 정규식에 맞는 부분 찾기
                     while(m.find()) {
-                        code = code.concat(m.group());
+                        code = m.group();
                     }
 
-                    info.add(Toons.builder()
-                            .toon_code(code)
-                            .toon_name(name)
-                            .serialize_day(dayInfo)
-                            .toon_provider(provider)
-                            .toon_href(href)
-                            .toon_imgsrc(src)
-                            .build());
+                    // Error Exception
 
+                    // 연재일이 하루가 아닌 웹툰들을 위해 OR연산을 통해 데이터 생성
+                    if(info.size() != 0) {
+                        for(Toons t : info) {
+                            if(t.getToon_code().equals(code)) {
+                                serial = (byte)(t.getSerialize_day()|serial);
+                                t.setSerialize_day(serial);
+                                flag = false;
+                                break;
+                            }
+                        }
+                    }
+
+                    if(flag) {
+                        info.add(Toons.builder()
+                                .toon_code(code)
+                                .toon_name(name)
+                                .serialize_day(serial)
+                                .toon_provider(provider)
+                                .toon_href(href)
+                                .toon_imgsrc(src)
+                                .build());
+                    } else {
+                        flag = true;
+                    }
                 }
             }
         } catch (IOException e) {
@@ -95,6 +126,47 @@ public class ToonService {
             log.error(":::::::::::::::::::::::::ToonService.getList():::::::::::::::::::::::::>>>>>> ERROR!!!");
         }
 
+        return nList;
+    }
+
+    public List<ToonsDTO.ConvertWebToonLists> convertList() {
+        HashMap<Byte, String> map       = new HashMap<>();
+        byte[]                arr       = {64, 32, 16, 8, 4, 2, 1};
+        byte                  pow       = 1;
+
+        for(String a : dayList) {
+            map.put(pow,a);
+            pow *= 2;
+        }
+        // 전체 테이블데이터를 불러와서 클라이언트로 넘겨줄 새로운 모델로 변형
+        List<Toons> lists = toonRepository.findAll();
+        List<ToonsDTO.ConvertWebToonLists> nList = new ArrayList<>();
+
+        for(Toons t : lists) {
+            byte serial = t.getSerialize_day();
+            List<String> tempList = new ArrayList<>();
+
+            for(byte num : arr) {
+                if(serial >= num) {
+                    tempList.add(map.get(num));
+                    serial = (byte)(serial - num);
+                }
+            }
+
+            String[] array      = new String[tempList.size()];
+            array               = tempList.toArray(array);
+
+            ToonsDTO.ConvertWebToonLists toonList =
+            ToonsDTO.ConvertWebToonLists.builder()
+                                        .toon_name(t.getToon_name())
+                                        .serialize_day(array)
+                                        .toon_href(t.getToon_href())
+                                        .toon_imgsrc(t.getToon_imgsrc())
+                                        .toon_provider(t.getToon_provider())
+                                        .build();
+            nList.add(toonList);
+        }
+        log.debug("ToonService | >>>>>>>>>>>>>> convertList()::::::::::::::::\n " + nList);
         return nList;
     }
 }

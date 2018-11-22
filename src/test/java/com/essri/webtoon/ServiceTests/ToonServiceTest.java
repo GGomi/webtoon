@@ -4,6 +4,7 @@ import com.essri.webtoon.service.ToonService;
 import com.essri.webtoon.web.data.ToonRepository;
 import com.essri.webtoon.web.data.Toons;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +19,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
+@Slf4j
 @ActiveProfiles("test")
 @SpringBootTest
 public class ToonServiceTest {
@@ -38,15 +40,14 @@ public class ToonServiceTest {
         // given
 
         Toons info = Toons.builder()
-                                .toon_code("CODE")
+                                .toon_code("123456")
                                 .toon_name("testName")
-                                .serialize_day("mon")
+                                .serialize_day((byte)64)
                                 .toon_href("www.www")
                                 .toon_imgsrc("img")
                                 .toon_provider("NAVER")
                                 .build();
 
-//        toonService.saveData(list);
         toonRepository.save(info);
 
         Toons toon = toonRepository.findAll().get(0);
@@ -68,9 +69,9 @@ public class ToonServiceTest {
         try {
             ObjectMapper mapper = new ObjectMapper();
             Object json = mapper.readValue(list.toString(),Object.class);
-            System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(json));
+            log.debug("RESULT::::::::::::::\n"+mapper.writerWithDefaultPrettyPrinter().writeValueAsString(json));
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.out.println("ERROR:::::::::::::::::::::>" + e.getMessage());
         }
     }
 

@@ -5,10 +5,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+
 @Entity
 @Table(name="toons")
 public class Toons {
@@ -21,7 +25,7 @@ public class Toons {
     private String toon_name;
 
     @Column(length = 100 , nullable = false)
-    private String serialize_day;
+    private byte serialize_day;
 
     @Column(length = 100, nullable = false)
     private String toon_provider;
@@ -33,6 +37,10 @@ public class Toons {
     @Column(length = 500, nullable = false)
     private String toon_imgsrc;
 
+    public void setSerialize_day(byte serialize_day) {
+        this.serialize_day = serialize_day;
+    }
+
     /**
      * @param toon_code
      * @param toon_name
@@ -43,7 +51,7 @@ public class Toons {
      */
 
     @Builder
-    public Toons(String toon_code, String toon_name, String serialize_day, String toon_provider, String toon_href, String toon_imgsrc) {
+    public Toons(String toon_code, String toon_name, byte serialize_day, String toon_provider, String toon_href, String toon_imgsrc) {
         this.toon_code      = toon_code;
         this.toon_name      = toon_name;
         this.serialize_day  = serialize_day;
