@@ -129,7 +129,7 @@ public class ToonService {
         return nList;
     }
 
-    public List<ToonsDTO.ConvertWebToonLists> convertList() {
+    public HashMap<String, List<ToonsDTO.ConvertWebToonLists>> convertList() {
         HashMap<Byte, String> map       = new HashMap<>();
         byte[]                arr       = {64, 32, 16, 8, 4, 2, 1};
         byte                  pow       = 1;
@@ -140,15 +140,18 @@ public class ToonService {
         }
         // 전체 테이블데이터를 불러와서 클라이언트로 넘겨줄 새로운 모델로 변형
         List<Toons> lists = toonRepository.findAll();
-        List<ToonsDTO.ConvertWebToonLists> nList = new ArrayList<>();
+        HashMap<String, List<ToonsDTO.ConvertWebToonLists>> dayMap = new HashMap<>();
+
 
         for(Toons t : lists) {
+
             byte serial = t.getSerialize_day();
             List<String> tempList = new ArrayList<>();
 
             for(byte num : arr) {
                 if(serial >= num) {
-                    tempList.add(map.get(num));
+                    String key = map.get(num);
+                    tempList.add(key);
                     serial = (byte)(serial - num);
                 }
             }
@@ -156,7 +159,7 @@ public class ToonService {
             String[] array      = new String[tempList.size()];
             array               = tempList.toArray(array);
 
-            ToonsDTO.ConvertWebToonLists toonList =
+            ToonsDTO.ConvertWebToonLists toon =
             ToonsDTO.ConvertWebToonLists.builder()
                                         .toon_name(t.getToon_name())
                                         .serialize_day(array)
@@ -164,9 +167,17 @@ public class ToonService {
                                         .toon_imgsrc(t.getToon_imgsrc())
                                         .toon_provider(t.getToon_provider())
                                         .build();
-            nList.add(toonList);
+            for(String a : tempList) {
+                List<ToonsDTO.ConvertWebToonLists> innerList = new ArrayList<>();
+                if(dayMap.get(a) != null) {
+                    innerList = dayMap.get(a);
+                }
+                innerList.add(toon);
+                log.debug(a);
+                dayMap.put(a, innerList);
+            }
         }
-        log.debug("ToonService | >>>>>>>>>>>>>> convertList()::::::::::::::::\n " + nList);
-        return nList;
+        log.debug("ToonService | >>>>>>>>>>>>>> convertList()::::::::::::::::\n " + dayMap);
+        return dayMap;
     }
 }

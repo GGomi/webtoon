@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -48,7 +49,7 @@ public class WebRestController {
      */
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseStatus(value = HttpStatus.OK)
-    public List<ToonsDTO.ConvertWebToonLists> getConvertList() {
+    public HashMap<String, List<ToonsDTO.ConvertWebToonLists>> getConvertList() {
         return toonservice.convertList();
     }
 }
