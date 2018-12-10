@@ -1,15 +1,12 @@
 package com.essri.webtoon.web.dto;
 
 import com.essri.webtoon.web.data.Toons;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 
+@ToString
 public class ToonsDTO {
-
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class ConvertWebToonLists {

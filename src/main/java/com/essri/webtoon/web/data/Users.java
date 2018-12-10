@@ -10,13 +10,14 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name="USER_INFO")
+@Table(name="user_info")
 @Getter
 @Entity
 public class Users {
     @Id
-    @Column(length = 50, nullable = false)
-    private String userId;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(length = 11, nullable = false)
+    private int userId;
 
     @Column(length = 50, nullable = false)
     private String nickname;
@@ -38,9 +39,8 @@ public class Users {
     @Column(length = 50, nullable = false)
     private String passwd;
 
-
     @Builder
-    private Users(String userId, String nickname, Email email, String passwd) {
+    private Users(int userId, String nickname, Email email, String passwd) {
         this.userId = userId;
         this.email = email;
         this.nickname = nickname;
