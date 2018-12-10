@@ -62,11 +62,14 @@ public class WebRestController {
 
     /**
      * TODO 회원가입 기능 작성중..
+     *
      * @return
      */
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)
-    public UsersDTO.SignUpReq userJoin(@RequestBody @Valid final UsersDTO.SignUpReq dto) {
-        return new UsersDTO.SignUpReq(userService.create(dto));
+    public UsersDTO.Res userJoin(@RequestBody @Valid final UsersDTO.SignUpReq dto) {
+        UsersDTO.Res res = new UsersDTO.Res(userService.create(dto));
+        log.debug(res.toString());
+        return res;
     }
 }
