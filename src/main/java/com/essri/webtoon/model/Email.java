@@ -1,16 +1,14 @@
 package com.essri.webtoon.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 @Getter
+@ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @JsonIgnoreProperties({"host","id"})
 public class Email {

@@ -21,7 +21,7 @@ public class AspectLogger {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Around("execution(* com.essri.webtoon.web.controller.WebRestController.*(..))")
-    public void before(ProceedingJoinPoint joinPoint) throws Throwable {
+    public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] args = joinPoint.getArgs();
         logger.info("########################################################");
         logger.info("### REQUEST_CLASS: {} ",  args.getClass().toString());
@@ -38,6 +38,7 @@ public class AspectLogger {
         logger.info("### RESPONSE_CLASS_TYPE: {} ",  res.getClass().toString());
         logger.info("### RESPONSE_PARAMS: {}",res.toString());
         logger.info("########################################################");
+        return res;
     }
 }
 

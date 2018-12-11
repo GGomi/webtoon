@@ -4,6 +4,7 @@ import com.essri.webtoon.web.data.ToonRepository;
 import com.essri.webtoon.web.data.Toons;
 import com.essri.webtoon.web.dto.ToonsDTO;
 import lombok.AllArgsConstructor;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,6 +22,7 @@ import java.util.regex.Pattern;
 @Service
 @AllArgsConstructor
 @Slf4j
+@ToString
 public class ToonService {
 
     private final ToonRepository toonRepository;
@@ -107,8 +109,8 @@ public class ToonService {
             }
         } catch (IOException e) {
             log.debug(e.getMessage());
+            return null;
         }
-        log.info(":::::::::::::::::::::::::ToonService.crawlData():::::::::::::::::::::::::>>>>>> SUCCESS!!!");
         return toonRepository.saveAll(info);
     }
 
@@ -173,7 +175,6 @@ public class ToonService {
                     innerList = dayMap.get(a);
                 }
                 innerList.add(toon);
-                log.debug(a);
                 dayMap.put(a, innerList);
             }
         }
