@@ -1,7 +1,7 @@
 package com.essri.webtoon.web.data;
 
-import com.essri.webtoon.model.Email;
-import com.essri.webtoon.model.Password;
+import com.essri.webtoon.entity.Email;
+import com.essri.webtoon.entity.Password;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,7 +17,7 @@ public class Users {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(length = 11, nullable = false)
-    private int userId;
+    private int user_id;
 
     @Column(length = 50, nullable = false)
     private String nickname;
@@ -26,25 +26,25 @@ public class Users {
     private Email email;
 
 //  Security
-//    @Embedded
-//    private Password passwd;
+    @Embedded
+    private Password password;
 
 //    @Builder
-//    private Users(int userId, String nickname, Email email, Password passwd) {
-//        this.userId = userId;
+//    private Users(int user_id, String nickname, Email email, Password passwd) {
+//        this.user_id = user_id;
 //        this.email = email;
 //        this.nickname = nickname;
 //        this.passwd = passwd;
 //    }
-    @Column(length = 50, nullable = false)
-    private String passwd;
+//    @Column(length = 50, nullable = false)
+//    private String passwd;
 
     @Builder
-    private Users(int userId, String nickname, Email email, String passwd) {
-        this.userId = userId;
+    private Users(int user_id, String nickname, Email email, Password password) {
+        this.user_id = user_id;
         this.email = email;
         this.nickname = nickname;
-        this.passwd = passwd;
+        this.password = password;
     }
 
 }

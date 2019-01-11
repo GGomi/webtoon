@@ -1,26 +1,23 @@
 package com.essri.webtoon.web.dto;
 
-import com.essri.webtoon.model.Email;
-import com.essri.webtoon.model.Password;
+import com.essri.webtoon.entity.Email;
 import com.essri.webtoon.web.data.Users;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
+
+@ToString
 public class UsersDTO {
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class SignUpReq {
 
-        @NotEmpty
-        private String nickname;
+        private int user_id;
 
         @NotEmpty
-        private String userId;
+        private String nickname;
 
         private String passwd;
 
@@ -28,11 +25,11 @@ public class UsersDTO {
         private Email email;
 
         @Builder
-        public SignUpReq (String nickname, String passwd, Email email, String userId) {
+        public SignUpReq (String nickname, String passwd, Email email, int user_id) {
             this.email      = email;
             this.nickname   = nickname;
             this.passwd     = passwd;
-            this.userId     = userId;
+            this.user_id     = user_id;
         }
 
         /**
@@ -42,18 +39,19 @@ public class UsersDTO {
             return Users.builder()
                     .email(this.email)
                     .nickname(this.nickname)
-//                    .passwd(Password.builder().value(this.passwd).build())
                     .passwd(this.passwd)
-                    .userId(this.userId)
+                    .user_id(this.user_id)
                     .build();
+            //      .passwd(Password.builder().value(this.passwd).build())
         }
     }
 
     @Getter
+    @ToString
     public static class Res {
         private Email email;
         private String nickname;
-        private String userId;
+        private int user_id;
         private String passwd;
 //        private Password passwd;
 
@@ -61,7 +59,7 @@ public class UsersDTO {
             this.email      = user.getEmail();
             this.nickname   = user.getNickname();
             this.passwd     = user.getPasswd();
-            this.userId     = user.getUserId();
+            this.user_id     = user.getUser_id();
         }
     }
 }

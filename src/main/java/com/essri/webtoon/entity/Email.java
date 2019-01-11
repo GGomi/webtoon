@@ -1,4 +1,4 @@
-package com.essri.webtoon.model;
+package com.essri.webtoon.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;

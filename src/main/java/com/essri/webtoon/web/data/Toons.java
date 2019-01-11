@@ -12,7 +12,6 @@ import javax.persistence.Table;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-
 @Entity
 @Table(name="toons")
 public class Toons {
@@ -30,7 +29,6 @@ public class Toons {
     @Column(length = 100, nullable = false)
     private String toon_provider;
 
-
     @Column(length = 300, nullable = false)
     private String toon_href;
 
@@ -40,15 +38,6 @@ public class Toons {
     public void setSerialize_day(byte serialize_day) {
         this.serialize_day = serialize_day;
     }
-
-    /**
-     * @param toon_code
-     * @param toon_name
-     * @param serialize_day
-     * @param toon_provider
-     * @param toon_href
-     * @param toon_imgsrc
-     */
 
     @Builder
     public Toons(String toon_code, String toon_name, byte serialize_day, String toon_provider, String toon_href, String toon_imgsrc) {

@@ -1,4 +1,4 @@
-package com.essri.webtoon.web;
+package com.essri.webtoon.web.controller;
 
 import com.essri.webtoon.service.ToonService;
 import com.essri.webtoon.service.UserService;
@@ -51,7 +51,7 @@ public class WebRestController {
 
     /**
      * 웹툰 리스트 불러오기
-     * @return toons 테이블 (model: ConvertWebToonLists)
+     * @return toons 테이블 (entity: ConvertWebToonLists)
      */
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseStatus(value = HttpStatus.OK)

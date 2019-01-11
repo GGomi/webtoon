@@ -5,9 +5,9 @@ import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 
-@ToString
 public class ToonsDTO {
     @Getter
+    @ToString
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class ConvertWebToonLists {
 
@@ -37,6 +37,7 @@ public class ToonsDTO {
     }
 
     @Getter
+    @ToString
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class ListRes {
         @NotEmpty
@@ -66,4 +67,5 @@ public class ToonsDTO {
             this.toon_imgsrc    = toon.getToon_imgsrc();
         }
     }
+
 }
