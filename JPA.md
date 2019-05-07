@@ -10,7 +10,7 @@
  http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
     <persistence-unit name="persistence">
-        <class>com.essri.webtoon.web.data.Toons</class>
+        <class>com.essri.webtoonService.web.data.Toons</class>
         <properties>
             <property name="javax.persistence.jdbc.Driver" value="com.mysql.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/webtoon" />

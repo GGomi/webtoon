@@ -1,4 +1,4 @@
-package com.essri.webtoon;
+package com.essri.webtoonService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
