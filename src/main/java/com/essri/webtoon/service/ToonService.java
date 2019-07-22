@@ -1,7 +1,7 @@
 package com.essri.webtoon.service;
 
 import com.essri.webtoon.web.dto.ToonRepository;
-import com.essri.webtoon.web.data.Toons;
+import com.essri.webtoon.web.model.Toons;
 import com.essri.webtoon.web.dto.ToonsDTO;
 import lombok.AllArgsConstructor;
 import lombok.ToString;

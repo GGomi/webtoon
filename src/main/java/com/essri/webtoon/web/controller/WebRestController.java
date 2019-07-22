@@ -2,8 +2,7 @@ package com.essri.webtoon.web.controller;
 
 import com.essri.webtoon.service.ToonService;
 import com.essri.webtoon.service.UserService;
-import com.essri.webtoon.web.data.Toons;
-import com.essri.webtoon.web.data.Users;
+import com.essri.webtoon.web.model.Toons;
 import com.essri.webtoon.web.dto.ToonsDTO;
 import com.essri.webtoon.web.dto.UsersDTO;
 import lombok.AllArgsConstructor;
@@ -22,12 +21,6 @@ public class WebRestController {
 
     private ToonService toonservice;
     private UserService userService;
-
-
-    @GetMapping("/test")
-    public String test() {
-        return "It's test!!!";
-    }
 
     /**
      * Batch 작업으로 바꿀 메소드(웹툰 목록 파싱)
@@ -72,4 +65,5 @@ public class WebRestController {
         log.debug(res.toString());
         return res;
     }
+
 }

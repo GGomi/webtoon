@@ -16,7 +16,7 @@ import java.util.Arrays;
 // http://heekim0719.tistory.com/141
 @Aspect
 @Component
-@Order(Ordered.LOWEST_PRECEDENCE)
+@Order
 public class AspectLogger {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 

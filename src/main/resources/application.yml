@@ -9,9 +9,10 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/webtoon?useUnicode=yes&characterEncoding=UTF-8
     username: root
-    password: root
+    password:
   jpa:
-    hibernate.ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate.ddl-auto: create
     generate-ddl: true
     show-sql: false
 

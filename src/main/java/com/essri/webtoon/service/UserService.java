@@ -2,7 +2,7 @@ package com.essri.webtoon.service;
 
 
 import com.essri.webtoon.web.dto.UserRepository;
-import com.essri.webtoon.web.data.Users;
+import com.essri.webtoon.web.model.Users;
 import com.essri.webtoon.web.dto.UsersDTO;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
