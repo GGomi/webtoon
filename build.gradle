@@ -31,6 +31,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-security')
 //    compile 'org.springframework.security:spring-security-config:4.2.2.RELEASE'
     runtimeOnly('com.h2database:h2')
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.10'
     compile('org.springframework.boot:spring-boot-starter-jdbc')
     compile('org.springframework.boot:spring-boot-starter-batch')
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'

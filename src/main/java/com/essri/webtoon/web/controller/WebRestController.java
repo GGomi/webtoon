@@ -2,25 +2,25 @@ package com.essri.webtoon.web.controller;
 
 import com.essri.webtoon.service.ToonService;
 import com.essri.webtoon.service.UserService;
-import com.essri.webtoon.web.model.Toons;
 import com.essri.webtoon.web.dto.ToonsDTO;
 import com.essri.webtoon.web.dto.UsersDTO;
-import lombok.AllArgsConstructor;
+import com.essri.webtoon.web.model.Toons;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class WebRestController {
 
-    private ToonService toonservice;
-    private UserService userService;
+    private final ToonService toonservice;
+    private final UserService userService;
 
     /**
      * Batch 작업으로 바꿀 메소드(웹툰 목록 파싱)
@@ -29,7 +29,8 @@ public class WebRestController {
     @RequestMapping(method = RequestMethod.POST, value="/insertData")
     @ResponseStatus(value = HttpStatus.CREATED)
     public List<Toons> crawlData() {
-        return toonservice.crawlData();
+        return toonservice.crawlDaumData();
+//        return toonservice.crawlNaverData();
     }
 
     /**
@@ -48,7 +49,7 @@ public class WebRestController {
      */
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ResponseStatus(value = HttpStatus.OK)
-    public HashMap<String, List<ToonsDTO.ConvertWebToonLists>> getConvertList() {
+    public Map<String, Map<String, List<ToonsDTO.ConvertWebToonLists>>> getConvertList() {
         return toonservice.convertList();
     }
 

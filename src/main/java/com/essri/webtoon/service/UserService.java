@@ -26,6 +26,7 @@ public class UserService {
     public Users create(UsersDTO.SignUpReq dto) {
         return userRepository.save(dto.toEntity());
     }
+
     public void getInputUserInfo(Users user) {
 
     }

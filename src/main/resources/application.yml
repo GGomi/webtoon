@@ -12,7 +12,7 @@ spring:
     password:
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    hibernate.ddl-auto: create
+    hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: false
 

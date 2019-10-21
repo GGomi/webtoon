@@ -1,30 +1,22 @@
 package com.essri.webtoon.batch.job;
 
-//@Slf4j
-//@RequiredArgsConstructor
-//@Configuration
+import com.essri.webtoon.service.ToonService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+@Slf4j
+@RequiredArgsConstructor
+@Component
 public class InsertWebtoonList {
-//    private final JobBuilderFactory jobBuilderFactory;
-//    private final StepBuilderFactory stepBuilderFactory;
-//    private final Crawling crawling;
-//    private final ToonRepository toonRepository;
-//
-//    @Bean
-//    public Job itsJob() {
-//        return jobBuilderFactory.get("itsJob")
-//                                .start(loadStep())
-//                                .build();
-//    }
-//
-//    @Bean
-//    public Step loadStep() {
-//        return stepBuilderFactory.get("itsJob")
-//                            .tasklet((contribution, chunkContext) -> {
-//                                toonRepository.deleteAll();
-//                                List<Toons> list =  crawling.getNaverToonData();
-//                                toonRepository.saveAll(list);
-//                                log.debug(">>>>>> batch Running!!!!! ");
-//                                return RepeatStatus.FINISHED;
-//                            }).build();
-//    }
+
+    private final ToonService toonService;
+
+    @Scheduled(cron = "* * 9 * * *")
+    public void insertWebtoonList() {
+        toonService.crawlNaverData();
+//        toonService.crawlDaumData();
+    }
+
 }
