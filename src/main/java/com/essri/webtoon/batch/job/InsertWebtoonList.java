@@ -16,7 +16,7 @@ public class InsertWebtoonList {
     @Scheduled(cron = "* * 9 * * *")
     public void insertWebtoonList() {
         toonService.crawlNaverData();
-//        toonService.crawlDaumData();
+        toonService.crawlDaumData();
     }
 
 }

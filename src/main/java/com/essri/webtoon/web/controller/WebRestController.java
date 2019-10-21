@@ -29,8 +29,8 @@ public class WebRestController {
     @RequestMapping(method = RequestMethod.POST, value="/insertData")
     @ResponseStatus(value = HttpStatus.CREATED)
     public List<Toons> crawlData() {
-        return toonservice.crawlDaumData();
-//        return toonservice.crawlNaverData();
+        toonservice.crawlDaumData();
+        return toonservice.crawlNaverData();
     }
 
     /**

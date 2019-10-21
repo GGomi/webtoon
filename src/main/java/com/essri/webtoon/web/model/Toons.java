@@ -14,10 +14,6 @@ import javax.persistence.*;
 public class Toons {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(length = 100, nullable = false)
     private String toon_code;
 
