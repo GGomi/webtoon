@@ -5,14 +5,12 @@ spring:
 ---
 spring:
   profiles: local
-  datasource:
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/webtoon?useUnicode=yes&characterEncoding=UTF-8
-    username: root
-    password:
+  h2:
+    console:
+      enabled: true
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    hibernate.ddl-auto: update
+    hibernate.ddl-auto: create-drop
     generate-ddl: true
     show-sql: false
 
