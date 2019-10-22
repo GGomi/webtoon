@@ -1,6 +1,7 @@
-# Webtoon(가제)
+# 마이툰즈
 ![spring Boot Version](https://img.shields.io/badge/SpringBoot-2.1.0%20RELEASE-green.svg)
 ![jdk version](https://img.shields.io/badge/jdk-8-red.svg)
+![build](https://travis-ci.org/GGomi/webtoon.svg?branch=master)
 
 ---
 # 프로젝트 소개
