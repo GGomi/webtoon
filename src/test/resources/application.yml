@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: local
+
+---
+spring:
+  profiles: local
+  jpa:
+    show-sql: true

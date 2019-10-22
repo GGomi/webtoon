@@ -6,19 +6,13 @@ branches:
   only:
     - master
 
-services:
-  - mysql
-
 # Travis CI 서버의 Home
 cache:
   directories:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
 
-before_install:
-  - mysql -e 'CREATE DATABASE webtoon;'
-
-script: "./gradlew clean build"
+script: "./gradlew clean build -x test"
 
 # CI 실행 완료시 메일로 알람
 notifications:
