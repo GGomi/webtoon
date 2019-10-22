@@ -20,15 +20,16 @@ notifications:
     recipients:
       - mark.oh@peertec.com
 
-#before_deploy:
-#  - zip -r springboot-webservice *
-#  - mkdir -p deploy
-#  - mv springboot-webservice.zip deploy/springboot-webservice.zip
+before_deploy:
+  - zip -r springboot-webservice *
+  - mkdir -p deploy
+  - mv springboot-webservice.zip deploy/springboot-webservice.zip
 
 deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
     secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
+    local_dir: deploy
     bucket: ggomi-springboot-webservice-deploy
     region: ap-northeast-2
     skip_cleanup: true
