@@ -7,10 +7,12 @@ import com.essri.webtoon.web.dto.UsersDTO;
 import com.essri.webtoon.web.model.Toons;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +23,8 @@ public class WebRestController {
 
     private final ToonService toonservice;
     private final UserService userService;
+
+    private final Environment env;
 
     /**
      * Batch 작업으로 바꿀 메소드(웹툰 목록 파싱)
@@ -65,6 +69,13 @@ public class WebRestController {
         UsersDTO.Res res = new UsersDTO.Res(userService.create(dto));
         log.debug(res.toString());
         return res;
+    }
+
+    @GetMapping("/profile")
+    public String getProfile () {
+        return Arrays.stream(env.getActiveProfiles())
+                .findFirst()
+                .orElse("");
     }
 
 }
