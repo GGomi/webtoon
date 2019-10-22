@@ -35,5 +35,5 @@ deploy:
     acl: public_read
     wait-until-deployed: true
     on:
-      repo: ggomi/webtoon #Github 주소
+      repo: GGomi/webtoon #Github 주소
       branch: master
