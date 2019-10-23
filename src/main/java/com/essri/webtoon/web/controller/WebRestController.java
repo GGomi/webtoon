@@ -33,7 +33,7 @@ public class WebRestController {
     @RequestMapping(method = RequestMethod.POST, value="/insertData")
     @ResponseStatus(value = HttpStatus.CREATED)
     public List<Toons> crawlData() {
-        toonservice.crawlDaumData();
+//        toonservice.crawlDaumData();
         return toonservice.crawlNaverData();
     }
 
