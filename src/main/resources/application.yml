@@ -1,18 +1,34 @@
 spring:
   profiles:
     active: local
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
+# 개발 환경
 ---
 spring:
   profiles: local
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
   h2:
     console:
       enabled: true
 
-  jpa:
-    hibernate.ddl-auto: create-drop
-    generate-ddl: true
-    show-sql: false
+# 운영 환경
+---
+spring.profiles: set1
+spring.profiles.include: real-db
+
+server:
+  port: 8081
 
 ---
+spring.profiles: set2
+spring.profiles.include: real-db
 
+server:
+  port: 8082
