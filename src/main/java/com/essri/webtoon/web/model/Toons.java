@@ -15,34 +15,34 @@ public class Toons {
 
     @Id
     @Column(length = 100, nullable = false)
-    private String toon_code;
+    private String toonCode;
 
     @Column(length = 100, nullable = false)
-    private String toon_name;
+    private String toonName;
 
     @Column(length = 100 , nullable = false)
-    private byte serialize_day;
+    private byte serializeDay;
 
     @Column(length = 100, nullable = false)
-    private String toon_provider;
+    private String toonProvider;
 
     @Column(length = 300, nullable = false)
-    private String toon_href;
+    private String toonHref;
 
     @Column(length = 500, nullable = false)
-    private String toon_imgsrc;
+    private String toonImgsrc;
 
-    public void setSerialize_day(byte serialize_day) {
-        this.serialize_day = serialize_day;
+    public void setSerializeDay(byte serializeDay) {
+        this.serializeDay = serializeDay;
     }
 
     @Builder
-    public Toons(String toon_code, String toon_name, byte serialize_day, String toon_provider, String toon_href, String toon_imgsrc) {
-        this.toon_code      = toon_code;
-        this.toon_name      = toon_name;
-        this.serialize_day  = serialize_day;
-        this.toon_provider  = toon_provider;
-        this.toon_href      = toon_href;
-        this.toon_imgsrc    = toon_imgsrc;
+    public Toons(String toonCode, String toonName, byte serializeDay, String toonProvider, String toonHref, String toonImgsrc) {
+        this.toonCode = toonCode;
+        this.toonName = toonName;
+        this.serializeDay = serializeDay;
+        this.toonProvider = toonProvider;
+        this.toonHref = toonHref;
+        this.toonImgsrc = toonImgsrc;
     }
 }

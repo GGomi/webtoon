@@ -13,7 +13,7 @@ public class InsertWebtoonList {
 
     private final ToonService toonService;
 
-    @Scheduled(cron = "* * 9 * * *")
+//    @Scheduled(cron = "* * 9 * * *")
     public void insertWebtoonList() {
         toonService.crawlNaverData();
         toonService.crawlDaumData();

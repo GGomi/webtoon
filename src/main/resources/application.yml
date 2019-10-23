@@ -8,8 +8,8 @@ spring:
   h2:
     console:
       enabled: true
+
   jpa:
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate.ddl-auto: create-drop
     generate-ddl: true
     show-sql: false

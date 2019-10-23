@@ -59,12 +59,12 @@ public class ToonsDTO {
         private String toon_imgsrc;
 
         public ListRes(Toons toon) {
-            this.toon_code      = toon.getToon_code();
-            this.toon_name      = toon.getToon_name();
-            this.serialize_day  = toon.getSerialize_day();
-            this.toon_provider  = toon.getToon_provider();
-            this.toon_href      = toon.getToon_href();
-            this.toon_imgsrc    = toon.getToon_imgsrc();
+            this.toon_code      = toon.getToonCode();
+            this.toon_name      = toon.getToonName();
+            this.serialize_day  = toon.getSerializeDay();
+            this.toon_provider  = toon.getToonProvider();
+            this.toon_href      = toon.getToonHref();
+            this.toon_imgsrc    = toon.getToonImgsrc();
         }
     }
 

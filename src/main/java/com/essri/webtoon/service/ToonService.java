@@ -6,8 +6,6 @@ import com.essri.webtoon.web.dto.DaumRestTemplate;
 import com.essri.webtoon.web.dto.ToonRepository;
 import com.essri.webtoon.web.dto.ToonsDTO;
 import com.essri.webtoon.web.model.Toons;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -97,9 +95,9 @@ public class ToonService {
                     // 연재일이 하루가 아닌 웹툰들을 위해 OR연산을 통해 데이터 생성
                     if (info.size() != 0) {
                         for (Toons t : info) {
-                            if (t.getToon_code().equals(code)) {
-                                serial = (byte) (t.getSerialize_day() | serial);
-                                t.setSerialize_day(serial);
+                            if (t.getToonCode().equals(code)) {
+                                serial = (byte) (t.getSerializeDay() | serial);
+                                t.setSerializeDay(serial);
                                 flag = false;
                                 break;
                             }
@@ -108,12 +106,12 @@ public class ToonService {
 
                     if (flag) {
                         info.add(Toons.builder()
-                                .toon_code(code)
-                                .toon_name(name)
-                                .serialize_day(serial)
-                                .toon_provider(provider)
-                                .toon_href(href)
-                                .toon_imgsrc(src)
+                                .toonCode(code)
+                                .toonName(name)
+                                .serializeDay(serial)
+                                .toonProvider(provider)
+                                .toonHref(href)
+                                .toonImgsrc(src)
                                 .build());
                     } else {
                         flag = true;
@@ -148,19 +146,19 @@ public class ToonService {
                     if (toonsMap.containsKey(toonId)) {
                         Toons toon = toonsMap.get(toonId);
                         byte serial = map.get(day);
-                        toon.setSerialize_day((byte) (toon.getSerialize_day() | serial));
+                        toon.setSerializeDay((byte) (toon.getSerializeDay() | serial));
                         toonsMap.put(toonId, toon);
                     } else {
                         String thumbnailHref = datum.getThumbnailImage() != null ? datum.getThumbnailImage().getUrl() : datum.getThumbnailImage2().getUrl();
 
                         toonsMap.put(toonId,
                                 Toons.builder()
-                                .toon_code(toonId)
-                                .toon_href(CrawlingConst.DAUM_WEBTOON_END_POINT + datum.getNickname())
-                                .toon_imgsrc(thumbnailHref)
-                                .toon_name(datum.getTitle())
-                                .toon_provider("DAUM")
-                                .serialize_day(map.get(day))
+                                .toonCode(toonId)
+                                .toonHref(CrawlingConst.DAUM_WEBTOON_END_POINT + datum.getNickname())
+                                .toonImgsrc(thumbnailHref)
+                                .toonName(datum.getTitle())
+                                .toonProvider("DAUM")
+                                .serializeDay(map.get(day))
                                 .build()
                         );
                     }
@@ -197,9 +195,9 @@ public class ToonService {
         providerMap.put("DAUM", new HashMap<>());
 
         for (Toons t : lists) {
-            Map<String, List<ToonsDTO.ConvertWebToonLists>> dayMap = providerMap.get(t.getToon_provider());
+            Map<String, List<ToonsDTO.ConvertWebToonLists>> dayMap = providerMap.get(t.getToonProvider());
 
-            byte serial = t.getSerialize_day();
+            byte serial = t.getSerializeDay();
             List<String> tempList = new ArrayList<>();
 
             for (byte num : arr) {
@@ -215,11 +213,11 @@ public class ToonService {
 
             ToonsDTO.ConvertWebToonLists toon =
                     ToonsDTO.ConvertWebToonLists.builder()
-                            .toon_name(t.getToon_name())
+                            .toon_name(t.getToonName())
                             .serialize_day(array)
-                            .toon_href(t.getToon_href())
-                            .toon_imgsrc(t.getToon_imgsrc())
-                            .toon_provider(t.getToon_provider())
+                            .toon_href(t.getToonHref())
+                            .toon_imgsrc(t.getToonImgsrc())
+                            .toon_provider(t.getToonProvider())
                             .build();
 
             for (String a : tempList) {
@@ -231,7 +229,7 @@ public class ToonService {
                 dayMap.put(a, innerList);
             }
 
-            providerMap.put(t.getToon_provider(), dayMap);
+            providerMap.put(t.getToonProvider(), dayMap);
         }
 
         return providerMap;

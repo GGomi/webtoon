@@ -16,7 +16,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.essri'
-version = '0.0.2-SNAPSHOT'
+version = '0.0.3-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
@@ -33,11 +33,14 @@ dependencies {
     runtimeOnly('com.h2database:h2')
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.10'
     compile('org.springframework.boot:spring-boot-starter-jdbc')
-    compile('org.springframework.boot:spring-boot-starter-batch')
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+    compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.5.1'
     compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.2.Final'
+    compile ('org.springframework.boot:spring-boot-starter-test')
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.28'
     compileOnly('org.projectlombok:lombok')
     compile 'org.jsoup:jsoup:1.11.3'
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+    testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 }
 

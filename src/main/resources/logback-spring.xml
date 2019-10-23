@@ -1,20 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <include resource="log/console.xml" />
-    <include resource="log/file.xml" />
-    <root level="info">
-        <springProfile name="local">
+    <springProfile name="local">
+        <include resource="logback-base.xml"/>
+        <root level="DEBUG">
             <appender-ref ref="STDOUT"/>
-            <appender-ref ref="dailyRollingFileAppender"/>
-        </springProfile>
-        <springProfile name="dev">
-            <appender-ref ref="dailyRollingFileAppender"/>
-        </springProfile>
-        <springProfile name="prod">
-            <appender-ref ref="dailyRollingFileAppender"/>
-        </springProfile>
-        <springProfile name="test">
+            <!--<appender-ref ref="application_log"/>-->
+            <!--<appender-ref ref="debug_log"/>-->
+            <appender-ref ref="error_log"/>
+            <appender-ref ref="info_log"/>
+            <!--<appender-ref ref="http_log"/>-->
+        </root>
+    </springProfile>
+
+    <springProfile name="sandbox">
+        <include resource="logback-base.xml"/>
+        <root level="DEBUG">
             <appender-ref ref="STDOUT"/>
-        </springProfile>
-    </root>
+            <!--<appender-ref ref="application_log"/>-->
+            <!--            <appender-ref ref="debug_log"/>-->
+            <appender-ref ref="error_log"/>
+            <appender-ref ref="info_log"/>
+            <!--<appender-ref ref="http_log"/>-->
+        </root>
+    </springProfile>
+
+    <springProfile name="set1">
+        <include resource="logback-base.xml"/>
+        <root level="INFO">
+            <!--<appender-ref ref="application_log"/>-->
+            <!--            <appender-ref ref="debug_log"/>-->
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="error_log"/>
+            <appender-ref ref="info_log"/>
+            <!--<appender-ref ref="http_log"/>-->
+        </root>
+    </springProfile>
+
+    <springProfile name="set2">
+        <include resource="logback-base.xml"/>
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+            <!--<appender-ref ref="application_log"/>-->
+            <!--            <appender-ref ref="debug_log"/>-->
+            <appender-ref ref="error_log"/>
+            <appender-ref ref="info_log"/>
+            <!--<appender-ref ref="http_log"/>-->
+        </root>
+    </springProfile>
 </configuration>

@@ -38,22 +38,22 @@ public class ToonServiceTest {
         // given
 
         Toons info = Toons.builder()
-                .toon_code("123456")
-                .toon_name("testName")
-                .serialize_day((byte) 64)
-                .toon_href("www.www")
-                .toon_imgsrc("img")
-                .toon_provider("NAVER")
+                .toonCode("123456")
+                .toonName("testName")
+                .serializeDay((byte) 64)
+                .toonHref("www.www")
+                .toonImgsrc("img")
+                .toonProvider("NAVER")
                 .build();
 
         toonRepository.save(info);
 
         Toons toon = toonRepository.findAll().get(0);
-        assertThat(toon.getToon_name()).isEqualTo(info.getToon_name());
-        assertThat(toon.getSerialize_day()).isEqualTo(info.getSerialize_day());
-        assertThat(toon.getToon_href()).isEqualTo(info.getToon_href());
-        assertThat(toon.getToon_imgsrc()).isEqualTo(info.getToon_imgsrc());
-        assertThat(toon.getToon_provider()).isEqualTo(info.getToon_provider());
+        assertThat(toon.getToonName()).isEqualTo(info.getToonName());
+        assertThat(toon.getSerializeDay()).isEqualTo(info.getSerializeDay());
+        assertThat(toon.getToonHref()).isEqualTo(info.getToonHref());
+        assertThat(toon.getToonImgsrc()).isEqualTo(info.getToonImgsrc());
+        assertThat(toon.getToonProvider()).isEqualTo(info.getToonProvider());
     }
 
     @Test
