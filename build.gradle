@@ -1,19 +1,26 @@
 buildscript {
     ext {
         springBootVersion = '2.1.0.RELEASE'
+        mooworkVersion = '1.2.0'
     }
     repositories {
+//        mavenLocal()
         mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("com.moowork.gradle:gradle-node-plugin:${mooworkVersion}")
     }
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.moowork.node'
+
 
 group = 'com.essri'
 version = '0.0.3-SNAPSHOT'
@@ -44,3 +51,30 @@ dependencies {
     testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 }
 
+def webappDir = "$projectDir/frontend/webtoon"
+
+node {
+    version = '12.6.0'
+    download=true
+    workDir = file("${project.buildDir}/nodejs")
+    npmWorkDir=file("${project.buildDir}/npm")
+}
+
+task appNpmInstall(type: NpmTask) {
+    workingDir = file("${project.projectDir}/frontend/webtoon")
+    args = ["install"]
+}
+
+task yarnBuild(type: YarnTask) {
+    workingDir = file("${project.projectDir}/frontend/webtoon")
+    args = ['build']
+}
+
+task copyWebApp(type: Copy) {
+    from "frontend/webtoon/build"
+    into 'build/resources/main/static/.'
+}
+
+yarnBuild.dependsOn appNpmInstall
+copyWebApp.dependsOn yarnBuild
+compileJava.dependsOn copyWebApp
