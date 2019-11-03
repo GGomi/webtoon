@@ -46,6 +46,10 @@ dependencies {
     compile ('org.springframework.boot:spring-boot-starter-test')
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.28'
     compileOnly('org.projectlombok:lombok')
+    testCompileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
+    testAnnotationProcessor("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
     compile 'org.jsoup:jsoup:1.11.3'
 
     testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
