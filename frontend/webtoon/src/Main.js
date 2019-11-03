@@ -20,7 +20,6 @@ class Main extends Component {
 
     fetch(host).then(res => res.json())
       .then(data => {
-        console.log(data);
         this.setState({
           data: data
         });
@@ -32,11 +31,11 @@ class Main extends Component {
       data: prevState.data,
       tab: data
     }))
-  }
+  };
 
   render() {
     let { data } = this.state;
-    
+
     let date = new Date();
     date = date.getDay();
     // const signup = document.getElementById("signUp");
@@ -59,7 +58,7 @@ class Main extends Component {
       data = this.state.data[this.state.tab];
 
       const weekArr = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
-      
+
       return (
         <div className="main">
           {/* <div className="fixed-menu">
@@ -76,7 +75,7 @@ class Main extends Component {
               let className = "daliy-list side";
               if(i === date) {
                 className = "daliy-list side today";
-              } 
+              }
 
               return (
                 <div className={className} key={i}>
