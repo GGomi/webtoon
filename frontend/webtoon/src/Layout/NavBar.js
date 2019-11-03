@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, Button, Form, FormGroup, Input } from 'reactstrap';
 
 const NavBar = (props) => {
 

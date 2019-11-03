@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Webtoon from './Webtoon';
-import Sidebar from './Layout/Sidebar';
 import NavBar from '../src/Layout/NavBar';
 import Config from './Cofing';
 
@@ -85,7 +84,6 @@ class Main extends Component {
               )
             })}
           </div>
-          <Sidebar></Sidebar>
         </div>
       );
     }
