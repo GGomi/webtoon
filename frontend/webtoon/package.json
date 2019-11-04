@@ -4,14 +4,15 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "App.js",
   "dependencies": {
+    "acorn": "^7.1.0",
+    "bootstrap": "^4.3.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
-    "stringquery": "^1.0.8",
     "reactstrap": "^8.1.1",
-    "acorn": "^7.1.0",
+    "stringquery": "^1.0.8",
     "webpack": "4.29.6"
   },
   "devDependencies": {},
