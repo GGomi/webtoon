@@ -21,7 +21,7 @@ notifications:
       - mark.oh@peertec.com
 
 before_deploy:
-  - zip -r springboot-webtoon * | grep -v nodejs | grep -v node_modules | grep -v out | grep -v logs
+  - zip -r springboot-webtoon * -x 'frontend/webtoon/node_modules/*' -x 'build/nodejs/*'
   - mkdir -p deploy
   - mv springboot-webtoon.zip deploy/springboot-webtoon.zip
 
