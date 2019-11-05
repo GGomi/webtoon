@@ -1,6 +1,6 @@
 package com.essri.webtoon.web.dto;
 
-import com.essri.webtoon.web.model.Toons;
+import com.essri.webtoon.database.entity.Toons;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;

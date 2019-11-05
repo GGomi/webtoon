@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 @RestController
 @RequiredArgsConstructor
-public class WebRestController {
+public class ProfileCheckApi {
 
     private final Environment env;
 

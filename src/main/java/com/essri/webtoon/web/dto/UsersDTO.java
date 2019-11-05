@@ -1,8 +1,7 @@
 package com.essri.webtoon.web.dto;
 
-import com.essri.webtoon.entity.Email;
-import com.essri.webtoon.entity.Password;
-import com.essri.webtoon.web.model.Users;
+import com.essri.webtoon.database.entity.Email;
+import com.essri.webtoon.database.entity.Users;
 import lombok.*;
 
 import javax.validation.Valid;

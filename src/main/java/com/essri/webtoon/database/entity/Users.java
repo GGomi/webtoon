@@ -1,7 +1,5 @@
-package com.essri.webtoon.web.model;
+package com.essri.webtoon.database.entity;
 
-import com.essri.webtoon.entity.Email;
-import com.essri.webtoon.entity.Password;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

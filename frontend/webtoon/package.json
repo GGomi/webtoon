@@ -1,7 +1,7 @@
 {
   "name": "webtoon-react",
   "version": "1.0.0",
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "description": "",
   "main": "App.js",
   "dependencies": {
     "acorn": "^7.1.0",

@@ -6,7 +6,6 @@ import com.essri.webtoon.web.dto.ToonsDTO;
 import com.essri.webtoon.web.dto.UsersDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +17,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Slf4j
 @RequestMapping("/api/v1/webtoon")
-public class WebtoonRestController {
+public class WebtoonApi {
 
     private final ToonService toonservice;
     private final UserService userService;

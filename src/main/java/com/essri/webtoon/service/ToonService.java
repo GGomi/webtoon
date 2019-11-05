@@ -1,11 +1,11 @@
 package com.essri.webtoon.service;
 
 import com.essri.webtoon.config.CrawlingConst;
-import com.essri.webtoon.web.dto.Datum;
-import com.essri.webtoon.web.dto.DaumRestTemplate;
-import com.essri.webtoon.web.dto.ToonRepository;
+import com.essri.webtoon.web.model.daum.Datum;
+import com.essri.webtoon.web.model.daum.DaumRestTemplate;
+import com.essri.webtoon.database.repository.ToonRepository;
 import com.essri.webtoon.web.dto.ToonsDTO;
-import com.essri.webtoon.web.model.Toons;
+import com.essri.webtoon.database.entity.Toons;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;

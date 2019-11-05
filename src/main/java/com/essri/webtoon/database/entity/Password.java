@@ -1,4 +1,4 @@
-package com.essri.webtoon.entity;
+package com.essri.webtoon.database.entity;
 
 import lombok.AccessLevel;
 import lombok.Builder;

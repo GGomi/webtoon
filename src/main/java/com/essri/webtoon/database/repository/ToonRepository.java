@@ -1,6 +1,6 @@
-package com.essri.webtoon.web.dto;
+package com.essri.webtoon.database.repository;
 
-import com.essri.webtoon.web.model.Toons;
+import com.essri.webtoon.database.entity.Toons;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ToonRepository extends JpaRepository<Toons, String> {

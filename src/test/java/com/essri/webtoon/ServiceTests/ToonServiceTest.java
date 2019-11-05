@@ -1,8 +1,8 @@
 package com.essri.webtoon.ServiceTests;
 
 import com.essri.webtoon.service.ToonService;
-import com.essri.webtoon.web.dto.ToonRepository;
-import com.essri.webtoon.web.model.Toons;
+import com.essri.webtoon.database.repository.ToonRepository;
+import com.essri.webtoon.database.entity.Toons;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.After;
 import org.junit.Test;

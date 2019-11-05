@@ -1,4 +1,4 @@
-package com.essri.webtoon.web.dto;
+package com.essri.webtoon.web.model.daum;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
