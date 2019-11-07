@@ -1,5 +1,5 @@
 const Config = {
-    'host': 'http://15.164.36.6/api/v1/webtoon'
+    'host': 'http://my-toons.tk/api/v1/webtoon'
 };
 
 export default Config;
