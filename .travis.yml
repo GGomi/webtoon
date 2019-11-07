@@ -51,3 +51,6 @@ deploy:
     on:
       repo: GGomi/webtoon
       branch: master
+
+after_success:
+  - ./gradlew jacocoRootReport coveralls

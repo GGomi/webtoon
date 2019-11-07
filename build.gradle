@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.2.0.RELEASE'
+        springBootVersion = '2.1.0.RELEASE'
         mooworkVersion = '1.2.0'
     }
     repositories {
@@ -13,6 +13,7 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("com.moowork.gradle:gradle-node-plugin:${mooworkVersion}")
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.2'
     }
 }
 
@@ -20,6 +21,8 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'com.moowork.node'
+apply plugin: 'com.github.kt3k.coveralls'
+apply plugin: 'jacoco'
 
 
 group = 'com.essri'
@@ -80,6 +83,13 @@ task yarnBuild(type: YarnTask) {
 task copyWebApp(type: Copy) {
     from "frontend/webtoon/build"
     into 'build/resources/main/static/.'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
 }
 
 yarnBuild.dependsOn appNpmInstall

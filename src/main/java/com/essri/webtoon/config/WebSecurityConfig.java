@@ -19,23 +19,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         this.authProvider = authProvider;
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers(
-                "/main",
-                "/resources/**",
-                "/login",
-                "/join"
-        );
-    }
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        web.ignoring().antMatchers(
+//                "/",
+//                "/main",
+//                "/resources/**",
+//                "/login",
+//                "/join"
+//        );
+//    }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
                 .antMatchers("/", "/login", "/join", "/error**").permitAll()
 //                .antMatchers("/**").access("ROLE_USER")
-                .antMatchers("/admin/**").access("ROLE_ADMIN")
-                .antMatchers("/**").authenticated()
+//                .antMatchers("/admin/**").access("ROLE_ADMIN")
+//                .antMatchers("/**").authenticated()
                 .and()
                     .formLogin()
                     .loginPage("/login")

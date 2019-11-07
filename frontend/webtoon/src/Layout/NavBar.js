@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, Button, Form, FormGroup, Input } from 'reactstrap';
+import "bootstrap/dist/css/bootstrap.css"
 
 const NavBar = (props) => {
 

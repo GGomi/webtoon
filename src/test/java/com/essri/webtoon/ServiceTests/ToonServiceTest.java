@@ -73,14 +73,14 @@ public class ToonServiceTest {
         }
     }
 
-    @Test
-    public void 다음_웹툰_크롤링_테스트() {
-        // given
-
-        List<Toons> list = toonService.crawlDaumData();
-        // when
-
-        // then
-    }
+//    @Test
+//    public void 다음_웹툰_크롤링_테스트() {
+//        // given
+//
+//        List<Toons> list = toonService.crawlDaumData();
+//        // when
+//
+//        // then
+//    }
 }
 
