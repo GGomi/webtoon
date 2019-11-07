@@ -14,11 +14,14 @@ cache:
 
 script: "./gradlew clean build -x test"
 
+after_success:
+  - ./gradlew jacocoTestReport coveralls
+
 # CI 실행 완료시 메일로 알람
-notifications:
-  email:
-    recipients:
-      - mark.oh@peertec.com
+#notifications:
+#  email:
+#    recipients:
+#      - mark.oh@peertec.com
 
 before_deploy:
   - zip -r springboot-webtoon * -x 'frontend/webtoon/node_modules/*' -x 'build/nodejs/*'
@@ -52,5 +55,3 @@ deploy:
       repo: GGomi/webtoon
       branch: master
 
-after_success:
-  - ./gradlew jacocoRootReport coveralls
