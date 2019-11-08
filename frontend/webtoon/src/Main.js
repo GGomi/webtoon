@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Webtoon from './Webtoon';
 import NavBar from '../src/Layout/NavBar';
-import Config from './Cofing';
 
 class Main extends Component {
     constructor() {
@@ -15,12 +14,11 @@ class Main extends Component {
 
     componentDidMount() {
         document.title = "MyToon | JeongminOh";
-        const host = `${Config.host}/list`;
 
-        fetch(host).then(res => res.json())
+        fetch('/api/v1/webtoon/list').then(res => res.json())
             .then(data => {
                 this.setState({
-                    data: data
+                    data: data.data
                 });
             });
     }
