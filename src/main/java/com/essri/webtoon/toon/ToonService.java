@@ -1,10 +1,9 @@
-package com.essri.webtoon.service;
+package com.essri.webtoon.toon;
 
 import com.essri.webtoon.config.CrawlingConst;
-import com.essri.webtoon.web.model.daum.Datum;
-import com.essri.webtoon.web.model.daum.DaumRestTemplate;
+import com.essri.webtoon.toon.model.daum.Datum;
+import com.essri.webtoon.toon.model.daum.DaumRestTemplate;
 import com.essri.webtoon.database.repository.ToonRepository;
-import com.essri.webtoon.web.dto.ToonsDTO;
 import com.essri.webtoon.database.entity.Toons;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.HttpClient;
@@ -213,11 +212,11 @@ public class ToonService {
 
             ToonsDTO.ConvertWebToonLists toon =
                     ToonsDTO.ConvertWebToonLists.builder()
-                            .toon_name(t.getToonName())
-                            .serialize_day(array)
-                            .toon_href(t.getToonHref())
-                            .toon_imgsrc(t.getToonImgsrc())
-                            .toon_provider(t.getToonProvider())
+                            .toonName(t.getToonName())
+                            .serializeDay(array)
+                            .toonHref(t.getToonHref())
+                            .toonImgsrc(t.getToonImgsrc())
+                            .toonProvider(t.getToonProvider())
                             .build();
 
             for (String a : tempList) {

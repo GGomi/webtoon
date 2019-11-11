@@ -20,7 +20,7 @@ import java.util.Arrays;
 public class AspectLogger {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Around("execution(* com.essri.webtoon.web.controller.WebtoonApi.*(..))")
+    @Around("execution(* com.essri.webtoon.toon.ToonApi.*(..))")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] args = joinPoint.getArgs();
         logger.info("########################################################");

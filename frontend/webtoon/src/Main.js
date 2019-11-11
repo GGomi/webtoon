@@ -63,11 +63,11 @@ class Main extends Component {
 
                     <div className="webtoon-list">
                         {weekArr.map(function (object, i) {
-                            const column = data[object].map((value, index) => <Webtoon name={value.toon_name}
-                                                                                       provider={value.toon_provider}
-                                                                                       day={value.serialize_day}
-                                                                                       img={value.toon_imgsrc}
-                                                                                       href={value.toon_href}
+                            const column = data[object].map((value, index) => <Webtoon name={value.toonName}
+                                                                                       provider={value.toonProvider}
+                                                                                       day={value.serializeDay}
+                                                                                       img={value.toonImgsrc}
+                                                                                       href={value.toonHref}
                                                                                        key={index}/>);
 
                             let className = i === date ? "daliy-list side today" : "daliy-list side";

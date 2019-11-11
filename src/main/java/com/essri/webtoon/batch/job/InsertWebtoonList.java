@@ -1,6 +1,6 @@
 package com.essri.webtoon.batch.job;
 
-import com.essri.webtoon.service.ToonService;
+import com.essri.webtoon.toon.ToonService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;

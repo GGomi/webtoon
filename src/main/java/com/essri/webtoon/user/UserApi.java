@@ -1,7 +1,5 @@
-package com.essri.webtoon.web.controller;
+package com.essri.webtoon.user;
 
-import com.essri.webtoon.service.UserService;
-import com.essri.webtoon.web.dto.UsersDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

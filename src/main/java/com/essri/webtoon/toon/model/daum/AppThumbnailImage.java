@@ -1,10 +1,10 @@
-package com.essri.webtoon.web.model.daum;
+package com.essri.webtoon.toon.model.daum;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 @Getter
-public class EpisodeImage {
+public class AppThumbnailImage {
     @JsonProperty("id")
     public Integer id;
     @JsonProperty("url")
@@ -23,5 +23,4 @@ public class EpisodeImage {
     public Object encryptKey;
     @JsonProperty("serviceStatus")
     public String serviceStatus;
-
 }

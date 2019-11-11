@@ -1,10 +1,10 @@
-package com.essri.webtoon.web.model.daum;
+package com.essri.webtoon.toon.model.daum;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 @Getter
-public class ThumbnailImage {
+public class EpisodeImage {
     @JsonProperty("id")
     public Integer id;
     @JsonProperty("url")

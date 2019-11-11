@@ -1,10 +1,6 @@
 spring:
   profiles:
     active: local
-  jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
 # 개발 환경
 ---
@@ -13,10 +9,35 @@ spring:
   jpa:
     show-sql: true
     hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.format_sql: true
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+  datasource:
+    data: classpath:data.sql
+    username: root
+    password:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/webtoon
+    sql-script-encoding: utf-8
+    initialization-mode: always
+
+
+# 테스트 환경
+---
+spring:
+  profiles: dev
+  jpa:
+    show-sql: true
+    hibernate:
       ddl-auto: create-drop
-  h2:
-    console:
-      enabled: true
+    database: h2
+    properties:
+      hibernate.format_sql: true
+  datasource:
+    data: classpath:data.sql
+
 
 # 운영 환경
 ---

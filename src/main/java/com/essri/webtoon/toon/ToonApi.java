@@ -1,19 +1,10 @@
-package com.essri.webtoon.web.controller;
+package com.essri.webtoon.toon;
 
-import com.essri.webtoon.service.ToonService;
-import com.essri.webtoon.service.UserService;
-import com.essri.webtoon.web.dto.BaseRestResponse;
-import com.essri.webtoon.web.dto.ToonsDTO;
-import com.essri.webtoon.web.dto.UsersDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
-import java.util.Map;
 
 import static com.essri.webtoon.web.dto.BaseRestResponse.success;
 
@@ -21,9 +12,16 @@ import static com.essri.webtoon.web.dto.BaseRestResponse.success;
 @RequiredArgsConstructor
 @Slf4j
 @RequestMapping("/api/v1/webtoon")
-public class WebtoonApi {
+public class ToonApi {
 
     private final ToonService toonservice;
+
+    @GetMapping("/test")
+    public String test() {
+        toonservice.crawlNaverData();
+        toonservice.crawlDaumData();
+        return "success";
+    }
 
     /**
      * 웹툰 리스트 불러오기

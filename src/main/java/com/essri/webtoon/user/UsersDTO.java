@@ -1,4 +1,4 @@
-package com.essri.webtoon.web.dto;
+package com.essri.webtoon.user;
 
 import com.essri.webtoon.database.entity.Email;
 import com.essri.webtoon.database.entity.Users;
