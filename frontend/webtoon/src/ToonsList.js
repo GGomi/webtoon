@@ -1,26 +1,39 @@
 import React, {Component} from 'react';
 import Webtoon from './Webtoon';
-import NavBar from '../src/Layout/NavBar';
+import NavBar from './Layout/NavBar';
+import loading from './commons/images/loading.gif';
 
-class Main extends Component {
+class ToonsList extends Component {
+    timer = null;
+
     constructor() {
         super(...arguments);
         this.state = {
             data: undefined,
             searchData: undefined,
+            isFetching: true,
             tab: "NAVER"
         }
     }
 
     componentDidMount() {
-        document.title = "MyToon | JeongminOh";
+        this.fetch();
+        // this.timer = setInterval(() => this.fetch(), 3000);
+    }
 
+    fetch= () => {
+        this.setState({data: undefined, searchData: undefined, isFetching: true})
         fetch('/api/v1/webtoon/list').then(res => res.json())
             .then(data => {
                 this.setState({
-                    data: data.data
+                    data: data.data,
+                    isFetching: false
                 });
             });
+    }
+
+    componentWillMount() {
+        // this.timer = null;
     }
 
     changeTab = (data) => {
@@ -31,7 +44,8 @@ class Main extends Component {
     };
 
     render() {
-        let {data} = this.state;
+        let {data, isFetching} = this.state;
+        console.log(this.state);
         let date = new Date().getDate();
 
         if (date === 0) {
@@ -40,10 +54,10 @@ class Main extends Component {
             date = date - 1;
         }
 
-        if (!data) {
+        if (isFetching) {
             return (
                 <div className="loading-page">
-                    <h2>로딩중........</h2>
+                    <img src={loading} alt="loading" />
                 </div>
             )
         } else {
@@ -53,12 +67,6 @@ class Main extends Component {
 
             return (
                 <div className="main">
-                    {/* <div className="fixed-menu">
-            <input data-function="swipe" id="swipe" type="checkbox"/>
-            <label data-function="swipe" htmlFor="swipe">&#xf057;</label>
-            <label data-function="swipe" htmlFor="swipe">&#xf0c9;</label>
-            <img data-function="swipe" className="menu-img" src={require("./commons/images/menu-button.png")} />
-          </div> */}
                     <NavBar action={this.changeTab}/>
 
                     <div className="webtoon-list">
@@ -86,4 +94,4 @@ class Main extends Component {
     }
 }
 
-export default Main;
+export default ToonsList;

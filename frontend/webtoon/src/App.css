@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Jua|Montserrat');
 body {
   width: 100%;
+  font-family: 'Jua';
   text-align: center;
 }
 
@@ -15,9 +16,9 @@ body {
   
 }
 .loading-page {
-  background-color: burlywood;
+  background-color: white;
   text-align: center;
-  height: 1000px;
+  height: 2000px;
 }
 .btn {
   border: none;
@@ -151,7 +152,9 @@ input[data-function*='swipe']:checked ~ label:nth-child(3){
   font-size: 20px;
   background-color: #FFE3B3;
 }
-
+.nav-header {
+  font-family: 'Jua';
+}
 .side {
   /* border: 3px solid #C957BC; */
   border-radius: 15px 15px 15px 15px;
@@ -167,6 +170,7 @@ input[data-function*='swipe']:checked ~ label:nth-child(3){
   margin-top: 5px;
   margin-bottom: 5px;
 }
+
 @media only screen and (min-width: 1500px) {
   .webtoon-list {
     width: 100%;
@@ -176,10 +180,10 @@ input[data-function*='swipe']:checked ~ label:nth-child(3){
 
 @media only screen and (max-width: 520px) {
   .webtoon-list {
-    /* display: inline-block;
+    display: inline-block;
     margin: 20px auto 0 auto;
     justify-content: center;
-    text-align: center; */
+    text-align: center;
     height: 100%;
   }
 

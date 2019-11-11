@@ -20,7 +20,7 @@ const NavBar = (props) => {
     }
 
     return (
-        <div>
+        <div className="nav-header">
             <Navbar color="faded" light>
                 <NavbarBrand href="/" className="mr-auto">Webtoooooooon</NavbarBrand>
                 <NavbarToggler onClick={toggleNavbar} className="mr-2" />
@@ -33,7 +33,6 @@ const NavBar = (props) => {
                             <Button color="danger" value="DAUM" onClick={e => props.action("DAUM")} active={cSelected.includes(2)}>다음</Button>
                         </NavItem>
                         <NavItem className="nav-item">
-                            {/* <NavLink href="/">My Toons</NavLink> */}
                             <Button color="danger" onClick={() => onCheckboxBtnClick(3)} active={cSelected.includes(3)}>My Toons</Button>
                         </NavItem>
                         <NavItem className="">
