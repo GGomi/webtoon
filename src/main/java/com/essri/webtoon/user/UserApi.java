@@ -1,5 +1,7 @@
 package com.essri.webtoon.user;
 
+import com.essri.webtoon.web.dto.BaseRestResponse;
+import com.essri.webtoon.web.request.dto.KakaoTokenRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +16,9 @@ public class UserApi {
 
     private final UserService userService;
 
-    @PostMapping("/login")
-    public ResponseEntity login(@RequestBody UsersDTO dto) {
-
-        return null;
+    @PostMapping("/kakao/getToken")
+    public ResponseEntity login(@RequestBody @Valid KakaoTokenRequest request) {
+        return BaseRestResponse.success(userService.getToken(request));
     }
 
     /**

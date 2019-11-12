@@ -6,6 +6,7 @@
   "dependencies": {
     "acorn": "^7.1.0",
     "bootstrap": "^4.3.1",
+    "query-string": "^6.8.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-kakao-login": "^1.2.0",

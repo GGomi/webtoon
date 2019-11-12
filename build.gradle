@@ -36,6 +36,8 @@ repositories {
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop'
+    compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('org.springframework.boot:spring-boot-starter-jdbc')
     compile ('org.springframework.boot:spring-boot-starter-test')
@@ -43,12 +45,20 @@ dependencies {
     compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.5.1'
 //    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.2.Final'
 
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop'
-    compile('org.springframework.boot:spring-boot-starter-security')
 //    compile 'org.springframework.security:spring-security-config:4.2.2.RELEASE'
     compile group: 'com.google.guava', name: 'guava', version: '25.0-jre'
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.10'
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.28'
+
+    implementation "io.reactivex.rxjava2:rxjava:2.2.0"
+    compile "org.apache.httpcomponents:httpclient:4.5.1"
+    compile "com.squareup.retrofit2:retrofit:2.6.1"
+    compile "com.squareup.retrofit2:converter-gson:2.6.1"
+    compile "com.squareup.retrofit2:adapter-rxjava2:2.6.1"
+    compile "com.squareup.okhttp3:okhttp:4.2.0"
+    compile("com.squareup.okhttp3:okhttp-urlconnection:4.2.0") {
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+    }
 
     compileOnly('org.projectlombok:lombok')
     testCompileOnly("org.projectlombok:lombok")
