@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 @ToString
@@ -14,29 +15,27 @@ public class UsersDTO {
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class SignUpReq {
 
-        private int userId;
+        @NotNull
+        private Long userId;
 
         @NotEmpty
-        private String username;
+        private String nickname;
 
-        private String password;
-
-        @Valid
-        private Email email;
+//        @Valid
+//        private Email email;
 
         @Builder
-        public SignUpReq(String username, String password, Email email, int userId) {
+        public SignUpReq(Long userId, String nickname) {
             this.userId = userId;
-            this.email = email;
-            this.username = username;
-            this.password = password;
+//            this.email = email;
+            this.nickname = nickname;
         }
 
         public Users toEntity() {
             return Users.builder()
-                    .username(this.username)
-                    .password(this.password)
-                    .email(this.email.getValue())
+                    .userId(this.userId)
+                    .username(this.nickname)
+//                    .email(this.email.getValue())
                     .build();
         }
     }
@@ -45,15 +44,27 @@ public class UsersDTO {
     @ToString
     public static class Res {
         private Long userId;
-        private Email email;
+//        private Email email;
         private String username;
-        private String password;
 
         public Res(Users user) {
             this.userId = user.getUserId();
-            this.email = user.getEmail();
+//            this.email = user.getEmail();
             this.username = user.getUsername();
-            this.password = user.getPassword().getValue();
         }
     }
+
+    @Getter
+    @ToString
+    public static class Profile {
+        private Long userId;
+        private String username;
+
+        public Profile(Long userId, String username) {
+            this.userId = userId;
+            this.username = username;
+        }
+    }
+
+
 }

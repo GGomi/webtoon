@@ -1,11 +1,10 @@
 package com.essri.webtoon.web.request.impl;
 
-import com.essri.webtoon.web.request.dto.KakaoApiTokenResponse;
-import com.essri.webtoon.web.request.dto.KakaoTokenRequest;
+import com.essri.webtoon.web.request.dto.KakaoApiProfileResponse;
 import io.reactivex.Single;
-import retrofit2.http.POST;
+import retrofit2.http.GET;
 
 public interface KakaoApiService {
-    @POST("/oauth/token")
-    Single<KakaoApiTokenResponse> getToken(KakaoTokenRequest request);
+    @GET("/v2/user/me")
+    Single<KakaoApiProfileResponse> getProfile();
 }

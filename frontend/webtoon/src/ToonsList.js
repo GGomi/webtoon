@@ -9,6 +9,7 @@ class ToonsList extends Component {
     constructor() {
         super(...arguments);
         this.state = {
+            token: '',
             data: undefined,
             searchData: undefined,
             isFetching: true,
@@ -45,8 +46,7 @@ class ToonsList extends Component {
 
     render() {
         let {data, isFetching} = this.state;
-        console.log(this.state);
-        let date = new Date().getDate();
+        let date = new Date().getDay();
 
         if (date === 0) {
             date = 6;
@@ -71,6 +71,7 @@ class ToonsList extends Component {
 
                     <div className="webtoon-list">
                         {weekArr.map(function (object, i) {
+                            console.log(i);
                             const column = data[object].map((value, index) => <Webtoon name={value.toonName}
                                                                                        provider={value.toonProvider}
                                                                                        day={value.serializeDay}

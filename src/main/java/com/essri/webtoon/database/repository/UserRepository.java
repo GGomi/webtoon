@@ -3,5 +3,9 @@ package com.essri.webtoon.database.repository;
 import com.essri.webtoon.database.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<Users, String> {
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<Users, Long> {
+
+    Optional<Users> findByUserId(Long userId);
 }

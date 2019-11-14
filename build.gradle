@@ -53,8 +53,8 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:2.2.0"
     compile "org.apache.httpcomponents:httpclient:4.5.1"
     compile "com.squareup.retrofit2:retrofit:2.6.1"
-    compile "com.squareup.retrofit2:converter-gson:2.6.1"
     compile "com.squareup.retrofit2:adapter-rxjava2:2.6.1"
+    compile 'com.squareup.retrofit2:converter-jackson:2.1.0'
     compile "com.squareup.okhttp3:okhttp:4.2.0"
     compile("com.squareup.okhttp3:okhttp-urlconnection:4.2.0") {
         exclude group: 'com.squareup.okhttp3', module: 'okhttp'

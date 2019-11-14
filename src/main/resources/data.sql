@@ -11,7 +11,7 @@
 # Dump of table toons
 # ------------------------------------------------------------
 #
-# DROP TABLE IF EXISTS `toons`;
+DROP TABLE IF EXISTS `toons`;
 #
 CREATE TABLE `toons` (
                          `toon_code` varchar(100) NOT NULL,

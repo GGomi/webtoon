@@ -16,20 +16,16 @@ public class UserApi {
 
     private final UserService userService;
 
-    @PostMapping("/kakao/getToken")
-    public ResponseEntity login(@RequestBody @Valid KakaoTokenRequest request) {
-        return BaseRestResponse.success(userService.getToken(request));
+    @PostMapping("/kakao/profile")
+    public ResponseEntity login(@RequestBody KakaoTokenRequest request) {
+        Long id = userService.getProfile(request.getToken()).getId();
+
+        return BaseRestResponse.success(userService.checkingJoined(id));
     }
 
-    /**
-     * TODO 회원가입 기능 작성중..
-     *
-     * @return
-     */
-    @PostMapping("/join")
+    @PostMapping("/signup")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public UsersDTO.Res userJoin(@RequestBody @Valid final UsersDTO.SignUpReq dto) {
-        UsersDTO.Res res = new UsersDTO.Res(userService.create(dto));
-        return res;
+    public ResponseEntity userJoin(@RequestBody @Valid final UsersDTO.SignUpReq dto) {
+        return BaseRestResponse.success(userService.create(dto));
     }
 }

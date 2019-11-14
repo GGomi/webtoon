@@ -142,7 +142,10 @@ input[data-function*='swipe']:checked ~ label:nth-child(3){
   text-align: center;
   background-color: #26648E;
 }
-
+.social-login-btn {
+  border: 0;
+  outline: 0;
+}
 .daliy-list {
   width: 12.7%;
   height: 100%;
@@ -169,6 +172,15 @@ input[data-function*='swipe']:checked ~ label:nth-child(3){
 .nav-item {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.custom-modal-header {
+  text-align: center;
+  display: block;
+}
+
+.modal-title {
+  font-size: 30px;
 }
 
 @media only screen and (min-width: 1500px) {
