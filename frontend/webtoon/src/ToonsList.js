@@ -71,7 +71,6 @@ class ToonsList extends Component {
 
                     <div className="webtoon-list">
                         {weekArr.map(function (object, i) {
-                            console.log(i);
                             const column = data[object].map((value, index) => <Webtoon name={value.toonName}
                                                                                        provider={value.toonProvider}
                                                                                        day={value.serializeDay}

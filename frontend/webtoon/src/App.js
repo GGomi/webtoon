@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import ToonsList from './ToonsList';
-import Login from './Login';
-import Signup from './SignUp';
+// import Login from './Login';
+// import Signup from './SignUp';
 
 class App extends Component {
     onLogout() {
