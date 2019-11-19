@@ -4,6 +4,12 @@
   "description": "",
   "main": "App.js",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-brands-svg-icons": "^5.11.2",
+    "@fortawesome/free-regular-svg-icons": "^5.11.2",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-fontawesome": "^0.1.7",
+    "@trendmicro/react-sidenav": "^0.4.5",
     "acorn": "^7.1.0",
     "bootstrap": "^4.3.1",
     "query-string": "^6.8.3",

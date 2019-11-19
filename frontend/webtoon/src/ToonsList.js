@@ -38,10 +38,14 @@ class ToonsList extends Component {
     }
 
     changeTab = (data) => {
-        this.setState((prevState) => ({
-            data: prevState.data,
-            tab: data
-        }))
+        if (data === 'NAVER' || data === 'DAUM') {
+            this.setState((prevState) => ({
+                data: prevState.data,
+                tab: data
+            }))
+        } else {
+            console.log(data);
+        }
     };
 
     render() {
@@ -68,7 +72,6 @@ class ToonsList extends Component {
             return (
                 <div className="main">
                     <NavBar action={this.changeTab}/>
-
                     <div className="webtoon-list">
                         {weekArr.map(function (object, i) {
                             const column = data[object].map((value, index) => <Webtoon name={value.toonName}
