@@ -44,10 +44,13 @@ class ToonsList extends Component {
                 data: prevState.data,
                 tab: data
             }))
-        } else {
+        }
+        /*
+         else {
             console.log(data);
             this.props.action(data);
         }
+        */
     };
 
     render() {
