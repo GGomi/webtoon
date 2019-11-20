@@ -20,8 +20,6 @@ class Main extends Component {
 
     if(type === 'webtoon') {
       return <ToonList action={this.changeTab}></ToonList>;
-    } else {
-      return <div>HI</div>;
     }
     
   }
