@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import Webtoon from './Webtoon';
 import NavBar from './Layout/NavBar';
-import loading from './commons/images/loading.gif';
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class ToonsList extends Component {
     timer = null;
 
-    constructor() {
-        super(...arguments);
+    constructor(props) {
+        super(props);
         this.state = {
             token: '',
             data: undefined,
@@ -45,6 +46,7 @@ class ToonsList extends Component {
             }))
         } else {
             console.log(data);
+            this.props.action(data);
         }
     };
 
@@ -61,7 +63,7 @@ class ToonsList extends Component {
         if (isFetching) {
             return (
                 <div className="loading-page">
-                    <img src={loading} alt="loading" />
+                    <FontAwesomeIcon color="white" icon={faSpinner} size="8x" spin={true}></FontAwesomeIcon>
                 </div>
             )
         } else {

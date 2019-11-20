@@ -16,7 +16,8 @@ body {
   
 }
 .loading-page {
-  background-color: white;
+  background-color: #26648E;
+  padding-top: 300px;
   text-align: center;
   height: 2000px;
 }
@@ -135,6 +136,7 @@ input[data-function*='swipe']:checked ~ label:nth-child(3){
 }
 .webtoon-list {
   width: 100%;
+  min-height: 1200px;
   display: flex;
   /* margin:  auto 0 auto; */
   padding-top: 20px;

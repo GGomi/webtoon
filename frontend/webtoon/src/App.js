@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
-import ToonsList from './ToonsList';
+import Main from './Main';
 // import Login from './Login';
 // import Signup from './SignUp';
 
@@ -13,7 +13,7 @@ class App extends Component {
         return (
             <Router>
                 {/* <Route exact path = "/login" component = {Login} /> */}
-                <Route exact path = "/" component = {ToonsList} />
+                <Route exact path = "/" component = {Main} />
             </Router>
         );
     }
