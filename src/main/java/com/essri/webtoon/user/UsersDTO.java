@@ -21,13 +21,9 @@ public class UsersDTO {
         @NotEmpty
         private String nickname;
 
-//        @Valid
-//        private Email email;
-
         @Builder
         public SignUpReq(Long userId, String nickname) {
             this.userId = userId;
-//            this.email = email;
             this.nickname = nickname;
         }
 
@@ -35,7 +31,6 @@ public class UsersDTO {
             return Users.builder()
                     .userId(this.userId)
                     .username(this.nickname)
-//                    .email(this.email.getValue())
                     .build();
         }
     }
@@ -44,12 +39,10 @@ public class UsersDTO {
     @ToString
     public static class Res {
         private Long userId;
-//        private Email email;
         private String username;
 
         public Res(Users user) {
             this.userId = user.getUserId();
-//            this.email = user.getEmail();
             this.username = user.getUsername();
         }
     }

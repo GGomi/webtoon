@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
-import './App.css'
+import styled from 'styled-components';
 
-class Webtoon extends Component {
+const imgWrapper = styled.div`
+    
+`;
+
+class ListItem extends Component {
     isMobile() {
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
@@ -20,11 +24,15 @@ class Webtoon extends Component {
 
         return (
             <div className="webtoon-item">
-                <a href={link} target="_sub"><img className="thumb-img" src={img} alt={name}/></a>
+                <a href={link} target="_sub">
+                    <div>
+                        <img className="thumb-img" src={img} alt={name}/>
+                    </div>
+                </a>
                 <p className="thumb-title">{name}</p>
             </div>
         )
     }
 }
 
-export default Webtoon;
+export default ListItem;

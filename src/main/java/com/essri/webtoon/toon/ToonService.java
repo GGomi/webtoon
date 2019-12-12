@@ -5,6 +5,7 @@ import com.essri.webtoon.toon.model.daum.Datum;
 import com.essri.webtoon.toon.model.daum.DaumRestTemplate;
 import com.essri.webtoon.database.repository.ToonRepository;
 import com.essri.webtoon.database.entity.Toons;
+import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -126,13 +127,7 @@ public class ToonService {
 
     public List<Toons> crawlDaumData() {
 
-        HttpClient httpClient = HttpClientBuilder.create()
-                .setMaxConnTotal(10)
-                .setMaxConnPerRoute(10)
-                .build();
-
-        Map<String, DaumRestTemplate> daumWebtoonList = new HashMap<>();
-        Map<String, Toons> toonsMap = new HashMap<>();
+        Map<String, Toons> toonsMap = Maps.newHashMap();
 
 
         for (String day : dayList) {
@@ -152,13 +147,13 @@ public class ToonService {
 
                         toonsMap.put(toonId,
                                 Toons.builder()
-                                .toonCode(toonId)
-                                .toonHref(CrawlingConst.DAUM_WEBTOON_END_POINT + datum.getNickname())
-                                .toonImgsrc(thumbnailHref)
-                                .toonName(datum.getTitle())
-                                .toonProvider("DAUM")
-                                .serializeDay(map.get(day))
-                                .build()
+                                        .toonCode(toonId)
+                                        .toonHref(CrawlingConst.DAUM_WEBTOON_END_POINT + datum.getNickname())
+                                        .toonImgsrc(thumbnailHref)
+                                        .toonName(datum.getTitle())
+                                        .toonProvider("DAUM")
+                                        .serializeDay(map.get(day))
+                                        .build()
                         );
                     }
                 }

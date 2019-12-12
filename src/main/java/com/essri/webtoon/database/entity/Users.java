@@ -24,17 +24,10 @@ public class Users {
     @Column(length = 50, nullable = false)
     private String username;
 
-//    @Embedded
-//    private Email email;
-
-//    @Embedded
-//    private Password password;
-
     @Builder
     private Users(Long userId, String username, String email) {
         this.userId = userId;
         this.username = username;
-//        this.email = Email.builder().value(email).build();
     }
 
 }
