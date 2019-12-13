@@ -14,23 +14,19 @@ import static com.essri.webtoon.web.dto.BaseRestResponse.success;
 @RequestMapping("/api/v1/webtoon")
 public class ToonApi {
 
-    private final ToonService toonservice;
+    private final ToonCrawlService toonCrawlService;
+    private final ToonFindService toonFindService;
 
     @GetMapping("/test")
     public String test() {
-        toonservice.crawlNaverData();
-        toonservice.crawlDaumData();
+        toonCrawlService.crawlNaverData();
+        toonCrawlService.crawlDaumData();
         return "success";
     }
 
-    /**
-     * 웹툰 리스트 불러오기
-     * @return toons 테이블 (entity: ConvertWebToonLists)
-     */
     @RequestMapping(method = RequestMethod.GET, value = "/list")
-    @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity getConvertList() {
-        return success(toonservice.convertList());
+        return success(toonFindService.convertList());
     }
 
 }
