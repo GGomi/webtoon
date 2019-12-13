@@ -1,14 +1,13 @@
 package com.essri.webtoon.toon;
 
 import com.essri.webtoon.config.CrawlingConst;
+import com.essri.webtoon.toon.dto.ToonsDTO;
 import com.essri.webtoon.toon.model.daum.Datum;
 import com.essri.webtoon.toon.model.daum.DaumRestTemplate;
 import com.essri.webtoon.database.repository.ToonRepository;
 import com.essri.webtoon.database.entity.Toons;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -27,7 +26,7 @@ import static com.essri.webtoon.config.CrawlingConst.NAVER_WEBTOON_LIST_TAG;
 
 @Service
 @Slf4j
-public class ToonService {
+public class ToonCrawlService {
 
     private final ToonRepository toonRepository;
     private final RestTemplate restTemplate;
@@ -36,7 +35,7 @@ public class ToonService {
     private HashMap<String, Byte> map;
     private byte pow = 1;
 
-    public ToonService(ToonRepository toonRepository, RestTemplate restTemplate) {
+    public ToonCrawlService(ToonRepository toonRepository, RestTemplate restTemplate) {
         this.toonRepository = toonRepository;
         this.restTemplate = restTemplate;
         this.map = new HashMap<>();
@@ -170,62 +169,5 @@ public class ToonService {
                 .collect(Collectors.toList());
     }
 
-    public Map<String, Map<String, List<ToonsDTO.ConvertWebToonLists>>> convertList() {
-        HashMap<Byte, String> map = new HashMap<>();
-        byte[] arr = {64, 32, 16, 8, 4, 2, 1};
-        byte pow = 1;
 
-        for (String a : dayList) {
-            map.put(pow, a);
-            pow *= 2;
-        }
-
-        // 전체 테이블데이터를 불러와서 클라이언트로 넘겨줄 새로운 모델로 변형
-        List<Toons> lists = toonRepository.findAll();
-
-        Map<String, Map<String, List<ToonsDTO.ConvertWebToonLists>>> providerMap = new HashMap<>();
-
-        providerMap.put("NAVER", new HashMap<>());
-        providerMap.put("DAUM", new HashMap<>());
-
-        for (Toons t : lists) {
-            Map<String, List<ToonsDTO.ConvertWebToonLists>> dayMap = providerMap.get(t.getToonProvider());
-
-            byte serial = t.getSerializeDay();
-            List<String> tempList = new ArrayList<>();
-
-            for (byte num : arr) {
-                if (serial >= num) {
-                    String key = map.get(num);
-                    tempList.add(key);
-                    serial = (byte) (serial - num);
-                }
-            }
-
-            String[] array = new String[tempList.size()];
-            array = tempList.toArray(array);
-
-            ToonsDTO.ConvertWebToonLists toon =
-                    ToonsDTO.ConvertWebToonLists.builder()
-                            .toonName(t.getToonName())
-                            .serializeDay(array)
-                            .toonHref(t.getToonHref())
-                            .toonImgsrc(t.getToonImgsrc())
-                            .toonProvider(t.getToonProvider())
-                            .build();
-
-            for (String a : tempList) {
-                List<ToonsDTO.ConvertWebToonLists> innerList = new ArrayList<>();
-                if (dayMap.get(a) != null) {
-                    innerList = dayMap.get(a);
-                }
-                innerList.add(toon);
-                dayMap.put(a, innerList);
-            }
-
-            providerMap.put(t.getToonProvider(), dayMap);
-        }
-
-        return providerMap;
-    }
 }

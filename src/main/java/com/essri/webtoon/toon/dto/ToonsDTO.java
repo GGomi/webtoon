@@ -1,4 +1,4 @@
-package com.essri.webtoon.toon;
+package com.essri.webtoon.toon.dto;
 
 import com.essri.webtoon.database.entity.Toons;
 import lombok.*;
