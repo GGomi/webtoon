@@ -13,19 +13,17 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name="user_info")
-public class Users {
-
+@Table(name = "user_token")
+public class UserToken {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(length = 11, nullable = false)
-    private Long id;
-
-    @Column(name = "user_id", unique = true, nullable = false)
+    @Column(name = "user_id")
     private Long userId;
 
-    @Column(length = 50, nullable = false)
-    private String username;
+    @Column(name = "token", length = 100)
+    private String token;
+
+    @Column(name = "refresh_token")
+    private String refreshToken;
 
     @CreationTimestamp
     @Column(name = "reg_dtime")
@@ -36,9 +34,9 @@ public class Users {
     private LocalDateTime updDtime;
 
     @Builder
-    private Users(Long userId, String username) {
+    public UserToken(Long userId, String token, String refreshToken) {
         this.userId = userId;
-        this.username = username;
+        this.token = token;
+        this.refreshToken = refreshToken;
     }
-
 }

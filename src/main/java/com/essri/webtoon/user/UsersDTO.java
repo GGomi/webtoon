@@ -1,10 +1,8 @@
 package com.essri.webtoon.user;
 
-import com.essri.webtoon.database.entity.Email;
 import com.essri.webtoon.database.entity.Users;
 import lombok.*;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -19,18 +17,24 @@ public class UsersDTO {
         private Long userId;
 
         @NotEmpty
-        private String nickname;
+        private String username;
+
+        private String token;
+
+        private String refreshToken;
 
         @Builder
-        public SignUpReq(Long userId, String nickname) {
+        public SignUpReq(Long userId, String username, String token, String refreshToken) {
             this.userId = userId;
-            this.nickname = nickname;
+            this.username = username;
+            this.token = token;
+            this.refreshToken = refreshToken;
         }
 
         public Users toEntity() {
             return Users.builder()
                     .userId(this.userId)
-                    .username(this.nickname)
+                    .username(this.username)
                     .build();
         }
     }

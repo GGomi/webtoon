@@ -4,8 +4,10 @@ import PrivateRoute from './components/PrivateRoute';
 import Loading from './components/Loading';
 import withReduxProvider from './stores';
 
-import LoginContainer from './containers/Login';
 import MainContainer from './containers/index';
+import LoginContainer from './containers/Login';
+// const MainContainer = React.lazy(() => import('containers/index'));
+// const LoginContainer = React.lazy(() => import('containers/Login'));
 
 function Routes() {
   return (

@@ -52,7 +52,7 @@ public class ToonFindServiceTest {
 
         //when
         Map<String, Map<String, List<ToonsDTO.ConvertWebToonLists>>> res = toonFindService.convertList();
-//        System.out.println(res.toString());
+
         //then
         assertThat(res.get(toons.getToonProvider()).size()).isEqualTo(1);
     }

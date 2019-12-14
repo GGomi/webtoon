@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Input} from 'reactstrap';
 import '../../commons/styles/style.css';
+import {updateState, userSignUp} from "../../stores/auth/action";
 
 const ModalWrapper = (props) => {
 
@@ -30,32 +31,29 @@ const ModalWrapper = (props) => {
     setRequestNickName(event.target.value)
   }, []);
 
-  const onSubmit = () => {
-    // const apiPath = '/api/v1/user/signup';
-    //
-    // const userInfo = {
-    //   'userId': userId,
-    //   'nickname': requestNickname
-    // };
-    //
-    // fetch(apiPath, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(userInfo)
-    // }).then((response) => response.json())
-    // .then((responseData) => {
-    //   console.log(responseData);
-    //   if (responseData.code === "200") {
-    //     sessionStorage.setItem('token', token);
-    //     sessionStorage.setItem('username', requestNickname);
-    //     window.location.href = '/';
-    //   } else {
-    //     console.error(responseData);
-    //     window.alert('서버와 통신이 원활하지않습니다.', window.location.reload(true));
-    //   }
-    // });
+  const onSubmit = async () => {
+    console.log(userId);
+
+    const signUpResponse = await dispatch(userSignUp({
+      userId: userId,
+      username: requestNickname,
+      token: token
+    }));
+
+    if (signUpResponse.code !== '200') {
+      console.error(signUpResponse);
+      window.alert('서버와 통신이 원활하지않습니다.');
+    } else {
+      localStorage.setItem("auth", JSON.stringify({
+        user_id: userId,
+        user_name: requestNickname,
+        token: token
+      }));
+
+      window.location.href = '/';
+    }
+
+
   };
 
   return (
