@@ -20,7 +20,14 @@ public class LikeToonApi {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public ResponseEntity getConvertList(@Valid @RequestBody LikeToonDto.LikeToonReq req, @RequestHeader(value="userId") long userId) {
+    public ResponseEntity likeToon(@Valid @RequestBody LikeToonDto.LikeToonReq req, @RequestHeader(value="userId") long userId) {
+        LikeToonDto.builder().userId(userId).toonCode(req.getToonCode()).build();
+        return BaseRestResponse.success("success");
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public ResponseEntity unlikeToon(@Valid @RequestBody LikeToonDto.LikeToonReq req, @RequestHeader(value="userId") long userId) {
         LikeToonDto.builder().userId(userId).toonCode(req.getToonCode()).build();
         return BaseRestResponse.success("success");
     }
