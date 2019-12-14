@@ -35,11 +35,11 @@ public class ToonFindServiceTest {
     public void setUp() {
         toons = Toons.builder()
                 .serializeDay((byte) 2) // 화요일만 연재
-                .toonCode("10000")
-                .toonImgsrc("href")
-                .toonName("test")
-                .toonProvider("NAVER")
-                .toonHref("link")
+                .code("10000")
+                .imgSrc("href")
+                .name("test")
+                .provider("NAVER")
+                .href("link")
                 .build();
 
         toonsList.add(toons);
@@ -54,7 +54,7 @@ public class ToonFindServiceTest {
         Map<String, Map<String, List<ToonsDTO.ConvertWebToonLists>>> res = toonFindService.convertList();
 
         //then
-        assertThat(res.get(toons.getToonProvider()).size()).isEqualTo(1);
+        assertThat(res.get(toons.getProvider()).size()).isEqualTo(1);
     }
 
     @Test(expected = ToonNotFoundException.class)

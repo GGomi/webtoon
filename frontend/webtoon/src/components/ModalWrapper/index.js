@@ -44,7 +44,7 @@ const ModalWrapper = (props) => {
       console.error(signUpResponse);
       window.alert('서버와 통신이 원활하지않습니다.');
     } else {
-      localStorage.setItem("auth", JSON.stringify({
+      sessionStorage.setItem("auth", JSON.stringify({
         user_id: userId,
         user_name: requestNickname,
         token: token

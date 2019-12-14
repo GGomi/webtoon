@@ -15,6 +15,7 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -94,7 +95,7 @@ public class ToonCrawlService {
                     // 연재일이 하루가 아닌 웹툰들을 위해 OR연산을 통해 데이터 생성
                     if (info.size() != 0) {
                         for (Toons t : info) {
-                            if (t.getToonCode().equals(code)) {
+                            if (t.getCode().equals(code)) {
                                 serial = (byte) (t.getSerializeDay() | serial);
                                 t.setSerializeDay(serial);
                                 flag = false;
@@ -105,12 +106,12 @@ public class ToonCrawlService {
 
                     if (flag) {
                         info.add(Toons.builder()
-                                .toonCode(code)
-                                .toonName(name)
+                                .code(code)
+                                .name(name)
                                 .serializeDay(serial)
-                                .toonProvider(provider)
-                                .toonHref(href)
-                                .toonImgsrc(src)
+                                .provider(provider)
+                                .href(href)
+                                .imgSrc(src)
                                 .build());
                     } else {
                         flag = true;
@@ -143,14 +144,14 @@ public class ToonCrawlService {
                         toonsMap.put(toonId, toon);
                     } else {
                         String thumbnailHref = datum.getThumbnailImage() != null ? datum.getThumbnailImage().getUrl() : datum.getThumbnailImage2().getUrl();
-
+                        ToonsDTO.ConvertWebToonLists c = ToonsDTO.ConvertWebToonLists.builder().build();
                         toonsMap.put(toonId,
                                 Toons.builder()
-                                        .toonCode(toonId)
-                                        .toonHref(CrawlingConst.DAUM_WEBTOON_END_POINT + datum.getNickname())
-                                        .toonImgsrc(thumbnailHref)
-                                        .toonName(datum.getTitle())
-                                        .toonProvider("DAUM")
+                                        .code(toonId)
+                                        .href(CrawlingConst.DAUM_WEBTOON_END_POINT + datum.getNickname())
+                                        .imgSrc(thumbnailHref)
+                                        .name(datum.getTitle())
+                                        .provider("DAUM")
                                         .serializeDay(map.get(day))
                                         .build()
                         );

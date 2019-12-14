@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {useDispatch, useSelector} from 'react-redux';
+// import {useDispatch, useSelector} from 'react-redux';
 import {Route, Redirect} from 'react-router-dom';
 
 function PrivateRoute({component, ...props}) {
-  const auth = useSelector(state => state.auth);
-  const dispatch = useDispatch();
+  // const auth = useSelector(state => state.auth);
+  // const dispatch = useDispatch();
 
   const InnerComponent = component;
   const redirectTo = {
@@ -15,7 +15,7 @@ function PrivateRoute({component, ...props}) {
     },
   };
 
-  if(!localStorage.getItem('auth')) {
+  if(!sessionStorage.getItem('auth')) {
     return <Redirect to={redirectTo}/>;
   }
 

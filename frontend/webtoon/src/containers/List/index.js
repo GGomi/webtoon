@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {fetchList} from '../../stores/list/actions'
 import Webtoon from './ListItem';
 import Loading from '../../components/Loading';
+import Profile from '../Profile';
 
 const getDate = () => {
   let date = new Date().getDay();
@@ -35,25 +36,30 @@ function ToonsList() {
 
   return (
       <div className="main">
-        <div className="webtoon-list">
-          {weekArr.map(function (object, i) {
-            const column = data[object].map((value, index) => <Webtoon name={value.toonName}
-                                                                       provider={value.toonProvider}
-                                                                       day={value.serializeDay}
-                                                                       img={value.toonImgsrc}
-                                                                       href={value.toonHref}
-                                                                       key={index}/>);
+        {
+          state.tab === 'profile'
+              ? <Profile/>
+              : <div className="webtoon-list">
+                {weekArr.map(function (object, i) {
+                  const column = data[object].map((value, index) => <Webtoon name={value.name}
+                                                                             provider={value.provider}
+                                                                             day={value.serializeDay}
+                                                                             img={value.imgSrc}
+                                                                             href={value.href}
+                                                                             key={index}/>);
 
-            let className = i === thisDate ? "daliy-list side today" : "daliy-list side";
+                  let className = i === thisDate ? "daliy-list side today" : "daliy-list side";
 
-            return (
-                <div className={className} key={i}>
-                  <div className="date-header">{weekArr[i]}</div>
-                  {column}
-                </div>
-            )
-          })}
-        </div>
+                  return (
+                      <div className={className} key={i}>
+                        <div className="date-header">{weekArr[i]}</div>
+                        {column}
+                      </div>
+                  )
+                })}
+              </div>
+        }
+
       </div>
   );
 }

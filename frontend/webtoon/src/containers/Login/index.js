@@ -40,7 +40,7 @@ class Login extends Component {
         openModal: true
       });
     } else {
-      localStorage.setItem("auth", JSON.stringify({
+      sessionStorage.setItem("auth", JSON.stringify({
         user_id: this.props.auth.user_id,
         user_name: this.props.auth.user_name,
         token: response.access_token
