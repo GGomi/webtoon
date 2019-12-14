@@ -23,8 +23,6 @@ public class Users {
     @Column(length = 50, nullable = false)
     private String username;
 
-    @JoinColumn()
-
     @CreationTimestamp
     @Column(name = "reg_dtime")
     private LocalDateTime regDTime;
