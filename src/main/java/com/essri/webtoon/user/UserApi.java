@@ -20,12 +20,12 @@ public class UserApi {
     public ResponseEntity login(@RequestBody KakaoTokenRequest request) {
         Long id = userService.getProfile(request.getToken()).getId();
 
-        return BaseRestResponse.success(userService.checkingJoined(id));
+        return BaseRestResponse.success(userService.checkingJoined(id, request.getToken(), request.getRefreshToken()));
     }
 
     @PostMapping("/signup")
     @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity userJoin(@RequestBody @Valid final UsersDTO.SignUpReq dto) {
-        return BaseRestResponse.success(userService.create(dto));
+        return BaseRestResponse.success(userService.signUp(dto));
     }
 }

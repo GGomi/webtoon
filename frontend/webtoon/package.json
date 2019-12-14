@@ -27,6 +27,7 @@
     "redux-thunk": "^2.3.0",
     "stringquery": "^1.0.8",
     "styled-components": "^4.4.1",
+    "sweetalert": "^2.1.2",
     "webpack": "4.29.6"
   },
   "devDependencies": {

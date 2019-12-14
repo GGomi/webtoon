@@ -16,4 +16,8 @@ public class KakaoTokenRequest {
     @JsonProperty("token")
     private String token;
 
+    @NotNull
+    @JsonProperty("refresh_token")
+    private String refreshToken;
+
 }
