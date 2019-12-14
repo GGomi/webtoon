@@ -49,6 +49,7 @@ public class LikeToonService {
             throw new BusinessException(ErrorCode.ALREADY_COMPLETED_TASK);
         }
     }
+
     public boolean unlikeToon(LikeToonDto likeToonDto) {
         LikeToonsId likeToonsId = LikeToonsId.convertDtoToId(likeToonDto);
         try {
@@ -62,4 +63,5 @@ public class LikeToonService {
     public List<LikeToons> getLikeToonsList(long userId) {
         return likeToonRepository.findByLikeToonsId_UserId(userId);
     }
+
 }
