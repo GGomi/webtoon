@@ -5,7 +5,7 @@ const initialState = {
   loading: false,
   tab: 'NAVER',
   data: {}
-}
+};
 
 export default (state = initialState, action) => {
   switch(action.type) {

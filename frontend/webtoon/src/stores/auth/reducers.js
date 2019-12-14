@@ -13,7 +13,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:
-      return {...state, ...action.data};
+      return { ...state, loading: false, data: action.data };
     case UPDATE_AUTH:
       return {...state, ...action.data};
     default:

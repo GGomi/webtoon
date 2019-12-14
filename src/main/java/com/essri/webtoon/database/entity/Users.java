@@ -4,28 +4,35 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name="user_info")
 @Getter
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name="user_info")
 public class Users {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(length = 11, nullable = false)
-    private Long id;
-
-    @Column(name = "user_id", unique = true, nullable = false)
+    @Column(name = "user_id")
     private Long userId;
 
     @Column(length = 50, nullable = false)
     private String username;
 
+    @CreationTimestamp
+    @Column(name = "reg_dtime")
+    private LocalDateTime regDTime;
+
+    @UpdateTimestamp
+    @Column(name = "upd_dtime")
+    private LocalDateTime updDtime;
+
     @Builder
-    private Users(Long userId, String username, String email) {
+    private Users(Long userId, String username) {
         this.userId = userId;
         this.username = username;
     }

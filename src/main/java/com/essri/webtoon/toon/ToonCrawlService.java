@@ -1,14 +1,13 @@
 package com.essri.webtoon.toon;
 
 import com.essri.webtoon.config.CrawlingConst;
+import com.essri.webtoon.toon.dto.ToonsDTO;
 import com.essri.webtoon.toon.model.daum.Datum;
 import com.essri.webtoon.toon.model.daum.DaumRestTemplate;
 import com.essri.webtoon.database.repository.ToonRepository;
 import com.essri.webtoon.database.entity.Toons;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,6 +15,7 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -27,7 +27,7 @@ import static com.essri.webtoon.config.CrawlingConst.NAVER_WEBTOON_LIST_TAG;
 
 @Service
 @Slf4j
-public class ToonService {
+public class ToonCrawlService {
 
     private final ToonRepository toonRepository;
     private final RestTemplate restTemplate;
@@ -36,7 +36,7 @@ public class ToonService {
     private HashMap<String, Byte> map;
     private byte pow = 1;
 
-    public ToonService(ToonRepository toonRepository, RestTemplate restTemplate) {
+    public ToonCrawlService(ToonRepository toonRepository, RestTemplate restTemplate) {
         this.toonRepository = toonRepository;
         this.restTemplate = restTemplate;
         this.map = new HashMap<>();
@@ -95,7 +95,7 @@ public class ToonService {
                     // 연재일이 하루가 아닌 웹툰들을 위해 OR연산을 통해 데이터 생성
                     if (info.size() != 0) {
                         for (Toons t : info) {
-                            if (t.getToonCode().equals(code)) {
+                            if (t.getCode().equals(code)) {
                                 serial = (byte) (t.getSerializeDay() | serial);
                                 t.setSerializeDay(serial);
                                 flag = false;
@@ -106,12 +106,12 @@ public class ToonService {
 
                     if (flag) {
                         info.add(Toons.builder()
-                                .toonCode(code)
-                                .toonName(name)
+                                .code(code)
+                                .name(name)
                                 .serializeDay(serial)
-                                .toonProvider(provider)
-                                .toonHref(href)
-                                .toonImgsrc(src)
+                                .provider(provider)
+                                .href(href)
+                                .imgSrc(src)
                                 .build());
                     } else {
                         flag = true;
@@ -144,14 +144,14 @@ public class ToonService {
                         toonsMap.put(toonId, toon);
                     } else {
                         String thumbnailHref = datum.getThumbnailImage() != null ? datum.getThumbnailImage().getUrl() : datum.getThumbnailImage2().getUrl();
-
+                        ToonsDTO.ConvertWebToonLists c = ToonsDTO.ConvertWebToonLists.builder().build();
                         toonsMap.put(toonId,
                                 Toons.builder()
-                                        .toonCode(toonId)
-                                        .toonHref(CrawlingConst.DAUM_WEBTOON_END_POINT + datum.getNickname())
-                                        .toonImgsrc(thumbnailHref)
-                                        .toonName(datum.getTitle())
-                                        .toonProvider("DAUM")
+                                        .code(toonId)
+                                        .href(CrawlingConst.DAUM_WEBTOON_END_POINT + datum.getNickname())
+                                        .imgSrc(thumbnailHref)
+                                        .name(datum.getTitle())
+                                        .provider("DAUM")
                                         .serializeDay(map.get(day))
                                         .build()
                         );
@@ -170,62 +170,5 @@ public class ToonService {
                 .collect(Collectors.toList());
     }
 
-    public Map<String, Map<String, List<ToonsDTO.ConvertWebToonLists>>> convertList() {
-        HashMap<Byte, String> map = new HashMap<>();
-        byte[] arr = {64, 32, 16, 8, 4, 2, 1};
-        byte pow = 1;
 
-        for (String a : dayList) {
-            map.put(pow, a);
-            pow *= 2;
-        }
-
-        // 전체 테이블데이터를 불러와서 클라이언트로 넘겨줄 새로운 모델로 변형
-        List<Toons> lists = toonRepository.findAll();
-
-        Map<String, Map<String, List<ToonsDTO.ConvertWebToonLists>>> providerMap = new HashMap<>();
-
-        providerMap.put("NAVER", new HashMap<>());
-        providerMap.put("DAUM", new HashMap<>());
-
-        for (Toons t : lists) {
-            Map<String, List<ToonsDTO.ConvertWebToonLists>> dayMap = providerMap.get(t.getToonProvider());
-
-            byte serial = t.getSerializeDay();
-            List<String> tempList = new ArrayList<>();
-
-            for (byte num : arr) {
-                if (serial >= num) {
-                    String key = map.get(num);
-                    tempList.add(key);
-                    serial = (byte) (serial - num);
-                }
-            }
-
-            String[] array = new String[tempList.size()];
-            array = tempList.toArray(array);
-
-            ToonsDTO.ConvertWebToonLists toon =
-                    ToonsDTO.ConvertWebToonLists.builder()
-                            .toonName(t.getToonName())
-                            .serializeDay(array)
-                            .toonHref(t.getToonHref())
-                            .toonImgsrc(t.getToonImgsrc())
-                            .toonProvider(t.getToonProvider())
-                            .build();
-
-            for (String a : tempList) {
-                List<ToonsDTO.ConvertWebToonLists> innerList = new ArrayList<>();
-                if (dayMap.get(a) != null) {
-                    innerList = dayMap.get(a);
-                }
-                innerList.add(toon);
-                dayMap.put(a, innerList);
-            }
-
-            providerMap.put(t.getToonProvider(), dayMap);
-        }
-
-        return providerMap;
-    }
 }
