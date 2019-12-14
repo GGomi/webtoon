@@ -33,4 +33,10 @@ public class LikeToonApi {
         return BaseRestResponse.success(likeToonService.unlikeToon(likeToonDto));
     }
 
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public ResponseEntity getLikeToonsList(@RequestHeader(value="userId") long userId) {
+        return BaseRestResponse.success(likeToonService.getLikeToonsList(userId));
+    }
+
 }

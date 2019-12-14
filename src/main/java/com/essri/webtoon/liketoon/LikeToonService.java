@@ -59,4 +59,7 @@ public class LikeToonService {
         }
     }
 
+    public List<LikeToons> getLikeToonsList(long userId) {
+        return likeToonRepository.findByLikeToonsId_UserId(userId);
+    }
 }
