@@ -1,5 +1,6 @@
 package com.essri.webtoon.database.entity;
 
+import com.essri.webtoon.liketoon.LikeToonDto;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -15,15 +16,18 @@ import java.io.Serializable;
 public class LikeToonsId implements Serializable {
 
 
-    @Column(name = "user_id")
-    private String userId;
-
     @Column(name = "toon_code")
-    private long toonCode;
+    private String toonCode;
+
+    @Column(name = "user_id")
+    private long userId;
 
     @Builder
-    public LikeToonsId(String userId, long toonCode) {
+    public LikeToonsId(String toonCode, long userId) {
         this.userId = userId;
         this.toonCode = toonCode;
+    }
+    static public LikeToonsId convertDtoToId(LikeToonDto likeToonDto) {
+        return LikeToonsId.builder().userId(likeToonDto.getUserId()).toonCode(likeToonDto.getToonCode()).build();
     }
 }

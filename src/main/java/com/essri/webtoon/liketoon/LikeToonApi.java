@@ -17,19 +17,20 @@ import static com.essri.webtoon.web.dto.BaseRestResponse.success;
 @Slf4j
 @RequestMapping("/api/v1/likeToon")
 public class LikeToonApi {
+    private final LikeToonService likeToonService;
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity likeToon(@Valid @RequestBody LikeToonDto.LikeToonReq req, @RequestHeader(value="userId") long userId) {
-        LikeToonDto.builder().userId(userId).toonCode(req.getToonCode()).build();
-        return BaseRestResponse.success("success");
+        LikeToonDto likeToonDto = LikeToonDto.builder().userId(userId).toonCode(req.getToonCode()).build();
+        return BaseRestResponse.success(likeToonService.likeToon(likeToonDto));
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity unlikeToon(@Valid @RequestBody LikeToonDto.LikeToonReq req, @RequestHeader(value="userId") long userId) {
-        LikeToonDto.builder().userId(userId).toonCode(req.getToonCode()).build();
-        return BaseRestResponse.success("success");
+        LikeToonDto likeToonDto = LikeToonDto.builder().userId(userId).toonCode(req.getToonCode()).build();
+        return BaseRestResponse.success(likeToonService.unlikeToon(likeToonDto));
     }
 
 }
