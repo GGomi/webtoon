@@ -9,7 +9,10 @@ public enum ErrorCode {
 
     INVALID_INPUT_VALUE(400, "U001", " Invalid Input Value"),
     INVALID_TYPE_VALUE(400, "U002", " Invalid Type Value"),
-    HANDLE_ACCESS_DENIED(403, "U003", "Access Denied")
+    HANDLE_ACCESS_DENIED(403, "U003", "Access Denied"),
+
+    ALREADY_COMPLETED_TASK(400, "L001", "이미 처리되었습니다.")
+
     ;
     private int status;
     private final String code;
