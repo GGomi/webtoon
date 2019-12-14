@@ -44,7 +44,7 @@ public class ToonFindService {
         providerMap.put("DAUM", new HashMap<>());
 
         for (Toons t : lists) {
-            Map<String, List<ToonsDTO.ConvertWebToonLists>> dayMap = providerMap.get(t.getToonProvider());
+            Map<String, List<ToonsDTO.ConvertWebToonLists>> dayMap = providerMap.get(t.getProvider());
 
             byte serial = t.getSerializeDay();
             List<String> tempList = new ArrayList<>();
@@ -62,11 +62,11 @@ public class ToonFindService {
 
             ToonsDTO.ConvertWebToonLists toon =
                     ToonsDTO.ConvertWebToonLists.builder()
-                            .toonName(t.getToonName())
+                            .name(t.getName())
                             .serializeDay(array)
-                            .toonHref(t.getToonHref())
-                            .toonImgsrc(t.getToonImgsrc())
-                            .toonProvider(t.getToonProvider())
+                            .href(t.getHref())
+                            .imgSrc(t.getImgSrc())
+                            .provider(t.getProvider())
                             .build();
 
             for (String day : tempList) {
@@ -78,7 +78,7 @@ public class ToonFindService {
                 dayMap.put(day, innerList);
             }
 
-            providerMap.put(t.getToonProvider(), dayMap);
+            providerMap.put(t.getProvider(), dayMap);
         }
 
         return providerMap;

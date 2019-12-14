@@ -16,7 +16,11 @@ import java.time.LocalDateTime;
 @Table(name = "user_token")
 public class UserToken {
     @Id
-    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @OneToOne
+    @Column(name = "user_id", unique = true)
     private Long userId;
 
     @Column(name = "token", length = 100)
@@ -26,11 +30,11 @@ public class UserToken {
     private String refreshToken;
 
     @CreationTimestamp
-    @Column(name = "reg_dtime")
+    @Column(name = "reg_dtime", nullable = false, updatable = false)
     private LocalDateTime regDTime;
 
     @UpdateTimestamp
-    @Column(name = "upd_dtime")
+    @Column(name = "upd_dtime", nullable = false)
     private LocalDateTime updDtime;
 
     @Builder

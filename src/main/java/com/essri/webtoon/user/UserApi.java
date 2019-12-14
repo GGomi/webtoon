@@ -17,7 +17,7 @@ public class UserApi {
     private final UserService userService;
 
     @PostMapping("/kakao/profile")
-    public ResponseEntity login(@RequestBody KakaoTokenRequest request) {
+    public ResponseEntity login(@RequestBody final KakaoTokenRequest request) {
         Long id = userService.getProfile(request.getToken()).getId();
 
         return BaseRestResponse.success(userService.checkingJoined(id, request.getToken(), request.getRefreshToken()));

@@ -1,9 +1,11 @@
 package com.essri.webtoon.toon.dto;
 
 import com.essri.webtoon.database.entity.Toons;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class ToonsDTO {
     @Getter
@@ -12,27 +14,27 @@ public class ToonsDTO {
     public static class ConvertWebToonLists {
 
         @NotEmpty
-        private String toonName;
+        private String name;
 
         @NotEmpty
         private String[] serializeDay;
 
         @NotEmpty
-        private String toonProvider;
+        private String provider;
 
         @NotEmpty
-        private String toonHref;
+        private String href;
 
         @NotEmpty
-        private String toonImgsrc;
+        private String imgSrc;
 
         @Builder
-        public ConvertWebToonLists(String toonName, String[] serializeDay, String toonProvider, String toonHref, String toonImgsrc) {
-            this.toonName = toonName;
+        public ConvertWebToonLists(String name, String[] serializeDay, String provider, String href, String imgSrc) {
+            this.name = name;
             this.serializeDay = serializeDay;
-            this.toonProvider = toonProvider;
-            this.toonHref = toonHref;
-            this.toonImgsrc = toonImgsrc;
+            this.provider = provider;
+            this.href = href;
+            this.imgSrc = imgSrc;
         }
     }
 
@@ -41,30 +43,30 @@ public class ToonsDTO {
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class ListRes {
         @NotEmpty
-        private String toonCode;
+        private String code;
 
         @NotEmpty
-        private String toonName;
+        private String name;
 
         @NotEmpty
         private byte serializeDay;
 
         @NotEmpty
-        private String toonProvider;
+        private String provider;
 
         @NotEmpty
-        private String toonHref;
+        private String href;
 
         @NotEmpty
-        private String toonImgsrc;
+        private String imgSrc;
 
         public ListRes(Toons toon) {
-            this.toonCode = toon.getToonCode();
-            this.toonName = toon.getToonName();
+            this.code = toon.getCode();
+            this.name = toon.getName();
             this.serializeDay = toon.getSerializeDay();
-            this.toonProvider = toon.getToonProvider();
-            this.toonHref = toon.getToonHref();
-            this.toonImgsrc = toon.getToonImgsrc();
+            this.provider = toon.getProvider();
+            this.href = toon.getHref();
+            this.imgSrc = toon.getImgSrc();
         }
     }
 

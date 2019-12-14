@@ -17,15 +17,13 @@ import java.time.LocalDateTime;
 public class Users {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(length = 11, nullable = false)
-    private Long id;
-
-    @Column(name = "user_id", unique = true, nullable = false)
+    @Column(name = "user_id")
     private Long userId;
 
     @Column(length = 50, nullable = false)
     private String username;
+
+    @JoinColumn()
 
     @CreationTimestamp
     @Column(name = "reg_dtime")
