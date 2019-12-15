@@ -39,17 +39,11 @@ const ModalWrapper = (props) => {
       username: requestNickname,
       token: token
     }));
-
+    console.log(signUpResponse);
     if (signUpResponse.code !== '200') {
       console.error(signUpResponse);
       window.alert('서버와 통신이 원활하지않습니다.');
     } else {
-      sessionStorage.setItem("auth", JSON.stringify({
-        user_id: userId,
-        user_name: requestNickname,
-        token: token
-      }));
-
       window.location.href = '/';
     }
 
