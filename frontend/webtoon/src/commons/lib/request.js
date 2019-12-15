@@ -6,6 +6,7 @@ let axios = axiosGlobal.create({
   headers: {
     'Accept': 'application/json, text/plain, */*',
     'Content-Type': 'application/json',
+    'token': sessionStorage.getItem('token')
   },
 });
 

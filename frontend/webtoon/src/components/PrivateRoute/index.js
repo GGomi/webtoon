@@ -15,7 +15,7 @@ function PrivateRoute({component, ...props}) {
     },
   };
 
-  if(!sessionStorage.getItem('auth')) {
+  if(!sessionStorage.getItem('token')) {
     return <Redirect to={redirectTo}/>;
   }
 

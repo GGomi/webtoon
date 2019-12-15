@@ -29,7 +29,7 @@ class Login extends Component {
 
   responseKakao = async ({response}) => {
     console.log(response);
-
+    sessionStorage.setItem('token', response.access_token);
     await this.props.dispatch(fetchLogin(response.access_token, response.refresh_token));
 
     if (this.props.auth.user_name === '') {

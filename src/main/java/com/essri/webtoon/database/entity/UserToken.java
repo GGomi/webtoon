@@ -19,7 +19,6 @@ public class UserToken {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
     @Column(name = "user_id", unique = true)
     private Long userId;
 
