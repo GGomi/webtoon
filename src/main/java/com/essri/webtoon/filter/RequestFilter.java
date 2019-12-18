@@ -1,8 +1,6 @@
 package com.essri.webtoon.filter;
 
 import com.essri.webtoon.exception.BusinessException;
-import com.essri.webtoon.exception.ErrorCode;
-import com.essri.webtoon.web.dto.BaseRestResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +19,6 @@ public class RequestFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) request;
         Enumeration<String> headerNames = req.getHeaderNames();
-
 
         if (headerNames != null) {
             while (headerNames.hasMoreElements()) {
