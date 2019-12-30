@@ -1,5 +1,6 @@
 package com.essri.webtoon.database.entity;
 
+import com.essri.webtoon.liketoon.model.LikeType;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,10 +18,10 @@ public class LikeToons {
     private LikeToonsId likeToonsId;
 
     @Column(name = "liked")
-    private Boolean liked;
+    private LikeType liked;
 
     @Builder
-    public LikeToons(LikeToonsId likeToonsId, Boolean liked) {
+    public LikeToons(LikeToonsId likeToonsId, LikeType liked) {
         this.likeToonsId = likeToonsId;
         this.liked = liked;
     }

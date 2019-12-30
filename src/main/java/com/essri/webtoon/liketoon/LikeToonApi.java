@@ -1,6 +1,5 @@
 package com.essri.webtoon.liketoon;
 
-import com.essri.webtoon.user.UsersDTO;
 import com.essri.webtoon.web.dto.BaseRestResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,8 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-
-import static com.essri.webtoon.web.dto.BaseRestResponse.success;
 
 @RestController
 @RequiredArgsConstructor
