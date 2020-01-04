@@ -5,7 +5,6 @@ const initialState = {
   loading: false,
   tab: 'NAVER',
   data: {},
-  likeList: []
 };
 
 export default (state = initialState, action) => {
@@ -17,7 +16,10 @@ export default (state = initialState, action) => {
     case UPDATE_WEBTOON_LIST_STATE:
         return { ...state, ...action.data };
     case `${LIKE_LIST_REQUEST}_SUCCESS`:
-        return {...state, likeList: action.data };
+        const likeList = action.data.map(element =>{
+          return element.likeToonsId.toonCode
+        })
+        return {...state, data: {...state.data, likeList: likeList} };
     default:
       return state;
   }

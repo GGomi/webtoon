@@ -31,29 +31,17 @@ export const fetchLikeList = () => async dispatch => {
   }
 };
 
-export const likeToon = (toonCode) => async dispatch => {
+export const likeToon = async(toonCode) => {
   try {
     const {data: {code, data}} = await request.post('/likeToon/like', {toonCode: toonCode});
-    
-    if(code === "200") {
-      
-    } else {
-      console.error(code);
-    }
   } catch(error) {
     console.error(error);
   }
 };
 
-export const unlikeToon = (toonCode) => async dispatch => {
+export const unlikeToon = async(toonCode) => {
   try {
     const {data: {code, data}} = await request.post('/likeToon/unlike', {toonCode: toonCode});
-    
-    if(code === "200") {
-      
-    } else {
-      console.error(code);
-    }
   } catch(error) {
     console.error(error);
   }

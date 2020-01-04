@@ -17,8 +17,8 @@ const getDate = () => {
 
 function ToonsList() {
   const dispatch = useDispatch();
-  const state = useSelector(state => state.list);
-
+  let state = useSelector(state => state.list);
+  
   useEffect(() => {
     const getInit = async () => {
       await dispatch(fetchList());
@@ -30,13 +30,9 @@ function ToonsList() {
   const thisDate = getDate();
   const weekArr = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
   const data = state.data[state.tab];
-  const likeList = []; 
-  state.likeList.forEach(element => {
-    likeList.push(element.likeToonsId.toonCode)
-  });
+  const likeList = state.data['likeList'];
   
-  
-  if (!data) {
+  if (!data || !likeList) {
     return <Loading/>;
   }
 
