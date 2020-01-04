@@ -62,6 +62,7 @@ public class ToonFindService {
 
             ToonsDTO.ConvertWebToonLists toon =
                     ToonsDTO.ConvertWebToonLists.builder()
+                            .code(t.getCode())
                             .name(t.getName())
                             .serializeDay(array)
                             .href(t.getHref())

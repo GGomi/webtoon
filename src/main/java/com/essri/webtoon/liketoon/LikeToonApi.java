@@ -16,14 +16,14 @@ import javax.validation.Valid;
 public class LikeToonApi {
     private final LikeToonService likeToonService;
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, value = "/like")
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity likeToon(@Valid @RequestBody LikeToonDto.LikeToonReq req, @RequestHeader(value="userId") long userId) {
         LikeToonDto likeToonDto = LikeToonDto.builder().userId(userId).toonCode(req.getToonCode()).build();
         return BaseRestResponse.success(likeToonService.likeToon(likeToonDto));
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
+    @RequestMapping(method = RequestMethod.POST, value = "/unlike")
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity unlikeToon(@Valid @RequestBody LikeToonDto.LikeToonReq req, @RequestHeader(value="userId") long userId) {
         LikeToonDto likeToonDto = LikeToonDto.builder().userId(userId).toonCode(req.getToonCode()).build();

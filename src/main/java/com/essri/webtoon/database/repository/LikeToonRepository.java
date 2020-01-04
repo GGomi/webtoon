@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface LikeToonRepository extends JpaRepository<LikeToons, LikeToonsId> {
-    List<LikeToons> findByLikeToonsId_UserId(Long userId);
+    List<LikeToons> findByLikeToonsId_UserId(long userId);
 }

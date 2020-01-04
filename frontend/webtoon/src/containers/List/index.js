@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchList} from '../../stores/list/actions'
+import {fetchList, fetchLikeList} from '../../stores/list/actions'
 import Webtoon from './ListItem';
 import Loading from '../../components/Loading';
 import Profile from '../Profile';
@@ -22,6 +22,7 @@ function ToonsList() {
   useEffect(() => {
     const getInit = async () => {
       await dispatch(fetchList());
+      await dispatch(fetchLikeList());
     };
     getInit();
   }, []);
@@ -29,7 +30,12 @@ function ToonsList() {
   const thisDate = getDate();
   const weekArr = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
   const data = state.data[state.tab];
-
+  const likeList = []; 
+  state.likeList.forEach(element => {
+    likeList.push(element.likeToonsId.toonCode)
+  });
+  
+  
   if (!data) {
     return <Loading/>;
   }
@@ -41,13 +47,18 @@ function ToonsList() {
               ? <Profile/>
               : <div className="webtoon-list">
                 {weekArr.map(function (object, i) {
-                  const column = data[object].map((value, index) => <Webtoon name={value.name}
-                                                                             provider={value.provider}
-                                                                             day={value.serializeDay}
-                                                                             img={value.imgSrc}
-                                                                             href={value.href}
-                                                                             key={index}/>);
-
+                  const column = data[object].map((value, index) => 
+                    <Webtoon name={value.name}
+                      provider={value.provider}
+                      day={value.serializeDay}
+                      img={value.imgSrc}
+                      href={value.href}
+                      key={index}
+                      toonCode={value.code}
+                      isLike={ likeList.indexOf(value.code) > -1 }
+                    />
+                    );
+                                                                          
                   let className = i === thisDate ? "daliy-list side today" : "daliy-list side";
 
                   return (

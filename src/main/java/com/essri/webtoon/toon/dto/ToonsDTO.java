@@ -12,7 +12,8 @@ public class ToonsDTO {
     @ToString
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class ConvertWebToonLists {
-
+        @NotEmpty
+        private String code;
         @NotEmpty
         private String name;
 
@@ -29,7 +30,8 @@ public class ToonsDTO {
         private String imgSrc;
 
         @Builder
-        public ConvertWebToonLists(String name, String[] serializeDay, String provider, String href, String imgSrc) {
+        public ConvertWebToonLists(String code, String name, String[] serializeDay, String provider, String href, String imgSrc) {
+            this.code = code;
             this.name = name;
             this.serializeDay = serializeDay;
             this.provider = provider;

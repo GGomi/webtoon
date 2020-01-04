@@ -18,6 +18,7 @@ public class LikeToons {
     private LikeToonsId likeToonsId;
 
     @Column(name = "liked")
+    @Enumerated(EnumType.STRING)
     private LikeType liked;
 
     @Builder
