@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import { likeToon, unlikeToon } from '../../stores/list/actions'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faHeart} from "@fortawesome/free-solid-svg-icons";
+import * as RegularHeart from "@fortawesome/free-regular-svg-icons";
 
 class ListItem extends Component {
     constructor(props) {
@@ -14,7 +17,7 @@ class ListItem extends Component {
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
 
-    updateLike = async() => {
+    updateLike = async () => {
         if (this.state.isCall) {
             alert("기다려주세여")
         } else if (!this.state.isLike) {
@@ -31,7 +34,6 @@ class ListItem extends Component {
     }
 
     render() {
-        
         const {name, img, href, provider} = this.props;
 
         let prefixHref;
@@ -50,10 +52,11 @@ class ListItem extends Component {
                         <img className="thumb-img" src={img} alt={name}/>
                     </div>
                 </a>
-                <span className="thumb-title">{name}</span>
                 <span className="webtoon-item-like" onClick={this.updateLike} >
-                {this.state.isLike ? '♥︎' : '♡'}
+                    {this.state.isLike ? <FontAwesomeIcon icon={faHeart} size="2x" color="red"/> : <FontAwesomeIcon icon={RegularHeart.faHeart} size="2x"/>}
                 </span>
+                <span className="thumb-title">{name}</span>
+                
             </div>
         )
     }
