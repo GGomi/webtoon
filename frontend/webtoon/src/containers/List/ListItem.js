@@ -53,7 +53,7 @@ class ListItem extends Component {
                     </div>
                 </a>
                 <span className="webtoon-item-like" onClick={this.updateLike} >
-                    {this.state.isLike ? <FontAwesomeIcon icon={faHeart} size="2x" color="red"/> : <FontAwesomeIcon icon={RegularHeart.faHeart} size="2x"/>}
+                    {this.state.isLike ? <FontAwesomeIcon icon={faHeart} size="2x" color="red" style={{cursor: 'pointer'}}/> : <FontAwesomeIcon icon={RegularHeart.faHeart} size="2x" style={{cursor: 'pointer'}}/>}
                 </span>
                 <span className="thumb-title">{name}</span>
                 
