@@ -50,6 +50,8 @@ dependencies {
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.10'
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.28'
 
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+
     implementation "io.reactivex.rxjava2:rxjava:2.2.0"
     compile "org.apache.httpcomponents:httpclient:4.5.1"
     compile "com.squareup.retrofit2:retrofit:2.6.1"
