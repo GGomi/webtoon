@@ -33,7 +33,7 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
     secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
     local_dir: deploy
-    bucket: ggomi-springboot-webservice-deploy
+    bucket: springboot-webtoon-deploy
     region: ap-northeast-2
     skip_cleanup: true
     acl: public_read
@@ -44,11 +44,11 @@ deploy:
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
     secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
-    bucket: ggomi-springboot-webservice-deploy # S3 버킷
+    bucket: springboot-webtoon-deploy # S3 버킷
     key: springboot-webtoon.zip # 빌드 파일을 압축해서 전달
     bundle_type: zip
-    application: springboot-webservice # 웹 콘솔에서 등록한 CodeDeploy 어플리케이션
-    deployment_group: springboot-webservice-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
+    application: springboot-webtoon # 웹 콘솔에서 등록한 CodeDeploy 어플리케이션
+    deployment_group: springboot-webtoon-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
     region: ap-northeast-2
     wait-until-deployed: true
     on:

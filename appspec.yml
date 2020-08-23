@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source:  /
-    destination: /home/ec2-user/app/nonstop/webtoon
+    destination: /home/ubuntu/app/nonstop/springboot-webtoon
 
 hooks:
   AfterInstall: # 배포가 끝나면 아래 명령어를 실행
