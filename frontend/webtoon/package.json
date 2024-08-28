@@ -21,7 +21,7 @@
     "react-scripts": "3.0.1",
     "reactstrap": "^8.1.1",
     "stringquery": "^1.0.8",
-    "webpack": "4.29.6"
+    "webpack": "5.94.0"
   },
   "devDependencies": {},
   "scripts": {
